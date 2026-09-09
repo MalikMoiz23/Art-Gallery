@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+
+# build cache
+.cache/
+src/.tailwindcss-cache/
+
+# local server / debug output
+*.log
+php-dev.log
+
+# environment
+.env
+.env.*
+!.env.example
+
+# editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.code-workspace
+
+# os cruft
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# scratch
+tmp/
+temp/
+*.bak
+*.orig

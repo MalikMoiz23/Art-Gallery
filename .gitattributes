@@ -1,0 +1,18 @@
+# Normalise text in the repository, check out with native endings.
+* text=auto
+
+*.php  text
+*.js   text
+*.css  text
+*.json text
+*.md   text
+
+# Never touch binaries.
+*.jpg   -text
+*.jpeg  -text
+*.png   -text
+*.gif   -text
+*.webp  -text
+*.woff  -text
+*.woff2 -text
+*.ico   -text
