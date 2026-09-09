@@ -29,7 +29,7 @@ $body_class = $body_class ?? '';
 
 <noscript><style>
   [data-reveal],[data-reveal].is-in{opacity:1!important;transform:none!important}
-  .split-line>i,.split-char{opacity:1!important;transform:none!important}
+  .split-line>i,.split-word>i,.split-char{opacity:1!important;transform:none!important}
   [data-img]{opacity:1!important}
   [data-reveal="clip"]::after,[data-reveal="wipe"]::after{display:none!important}
 </style></noscript>

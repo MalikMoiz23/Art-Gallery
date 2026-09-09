@@ -16,11 +16,16 @@ include __DIR__ . '/includes/head.php';
 <main id="main">
 
   <!-- ============================================================ hero -->
-  <section class="bg-sand" style="padding-top:calc(var(--header-h) + clamp(2rem, 4vw, 3.5rem))">
-    <div class="shell pb-14 sm:pb-20">
-      <div class="grid lg:grid-cols-12 gap-x-12 gap-y-14 items-center">
+  <!-- A lit wall with three works hung on it. Full viewport height, so the
+       whole composition lands at once and the next section needs a scroll. -->
+  <section class="relative bg-sand min-h-[100svh] flex flex-col overflow-hidden" style="padding-top:var(--header-h)">
 
-        <div class="lg:col-span-7">
+    <div class="hero-light" aria-hidden="true"></div>
+
+    <div class="shell relative flex-1 flex items-center py-8 sm:py-10">
+      <div class="grid lg:grid-cols-12 gap-x-10 xl:gap-x-16 gap-y-12 items-center w-full">
+
+        <div class="lg:col-span-6">
           <a href="gallery.php" class="inline-flex flex-wrap items-center gap-x-3 gap-y-1 mb-7 group" data-reveal="right">
             <span class="relative flex w-2 h-2">
               <span class="absolute inset-0 rounded-full bg-char animate-pulse-ring"></span>
@@ -30,62 +35,72 @@ include __DIR__ . '/includes/head.php';
             <span class="label-xs text-muted num">until <?= e(EXHIBITION_CURRENT['to']) ?></span>
           </a>
 
-          <h1 class="display d-hero" data-split="chars" data-reveal="fade">Stand closer.</h1>
+          <h1 class="display d-hero" data-split="words" data-reveal="fade">Stand closer.</h1>
 
-          <p class="lede mt-7 max-w-[46ch] text-char/75" data-reveal="up" data-reveal-delay="380">
+          <p class="lede mt-7 max-w-[44ch] text-char/75" data-reveal="up" data-reveal-delay="620">
             Eight artists, <?= count(all_artworks()) ?> works on the wall this season, and a room on Kohsar Block
             where nobody hurries you.
           </p>
 
-          <div class="flex flex-wrap items-center gap-3 mt-9" data-reveal="up" data-reveal-delay="480">
+          <div class="flex flex-wrap items-center gap-3 mt-9" data-reveal="up" data-reveal-delay="720">
             <a href="gallery.php" class="btn" data-magnet="7"><span>See the collection</span></a>
             <a href="booking.php" class="btn btn-ghost" data-magnet="7"><span>Book a viewing</span></a>
           </div>
         </div>
 
-        <div class="lg:col-span-5" data-reveal="up" data-reveal-delay="220">
+        <div class="lg:col-span-6">
           <?php if ($hero_work): $hm = media($hero_work['img']); ?>
-            <div class="flex flex-col-reverse lg:flex-row lg:items-end gap-3 sm:gap-4 max-w-[420px] mx-auto lg:max-w-[480px] lg:ml-auto lg:mr-0">
+            <div class="flex flex-col-reverse lg:flex-row lg:items-start gap-4 sm:gap-5 max-w-[430px] mx-auto lg:max-w-[460px] xl:max-w-[520px] lg:ml-auto lg:mr-0">
 
-              <!-- Two supporting works, a row beneath on phones and a column beside on desktop. -->
-              <div class="flex lg:flex-col gap-3 sm:gap-4 lg:w-[27%] shrink-0">
-                <?php foreach ($hero_side as $side): $sm = media($side['img']); ?>
+              <!-- The two supporting works hang lower than the main one, and at
+                   slightly different heights from each other. -->
+              <div class="flex lg:flex-col gap-4 sm:gap-5 lg:w-[26%] shrink-0 lg:pt-12">
+                <?php foreach ($hero_side as $i => $side): $sm = media($side['img']); ?>
                   <a href="artwork.php?slug=<?= e($side['slug']) ?>"
-                     class="block flex-1 lg:flex-none min-w-0"
+                     class="hero-hang block flex-1 lg:flex-none min-w-0<?= $i === 1 ? ' lg:mt-4' : '' ?>"
+                     data-reveal="up" data-reveal-delay="<?= 520 + $i * 140 ?>"
                      aria-label="<?= e($side['title']) ?> by <?= e(artist_name($side['artist'])) ?>">
-                    <div class="frame frame-sm">
-                      <div class="frame-mat">
-                        <div class="media" style="aspect-ratio:<?= (int) $sm['w'] ?>/<?= (int) $sm['h'] ?>">
-                          <?= picture($side['img'], $side['title'] . ' by ' . artist_name($side['artist'])) ?>
+                    <div data-parallax="<?= $i === 0 ? '0.07' : '-0.05' ?>">
+                      <div class="frame frame-sm">
+                        <div class="frame-mat">
+                          <div class="media" style="aspect-ratio:<?= (int) $sm['w'] ?>/<?= (int) $sm['h'] ?>">
+                            <?= picture($side['img'], $side['title'] . ' by ' . artist_name($side['artist'])) ?>
+                          </div>
                         </div>
                       </div>
+                      <p class="label-xs text-muted mt-2.5 leading-tight"><?= e($side['title']) ?></p>
                     </div>
                   </a>
                 <?php endforeach; ?>
               </div>
 
-              <a href="artwork.php?slug=<?= e($hero_work['slug']) ?>" class="block flex-1 min-w-0">
-                <div class="frame">
-                  <div class="frame-mat">
-                    <div class="media" style="aspect-ratio:<?= (int) $hm['w'] ?>/<?= (int) $hm['h'] ?>">
-                      <?= picture($hero_work['img'], $hero_work['title'] . ' by ' . artist_name($hero_work['artist']), '', true) ?>
+              <a href="artwork.php?slug=<?= e($hero_work['slug']) ?>"
+                 class="hero-hang block flex-1 min-w-0" data-reveal="up" data-reveal-delay="380">
+                <div data-parallax="0.03">
+                  <div class="frame">
+                    <div class="frame-mat">
+                      <div class="media" style="aspect-ratio:<?= (int) $hm['w'] ?>/<?= (int) $hm['h'] ?>">
+                        <?= picture($hero_work['img'], $hero_work['title'] . ' by ' . artist_name($hero_work['artist']), '', true) ?>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="flex items-baseline justify-between gap-4 mt-4">
-                  <div class="min-w-0">
-                    <p class="display d-4"><?= e($hero_work['title']) ?></p>
-                    <p class="label-xs text-muted mt-1.5"><?= e(artist_name($hero_work['artist'])) ?> · <?= (int) $hero_work['year'] ?></p>
+                  <div class="flex items-baseline justify-between gap-4 mt-4">
+                    <div class="min-w-0">
+                      <p class="display d-4"><?= e($hero_work['title']) ?></p>
+                      <p class="label-xs text-muted mt-1.5"><?= e(artist_name($hero_work['artist'])) ?> · <?= (int) $hero_work['year'] ?></p>
+                    </div>
+                    <p class="num text-sm shrink-0"><?= e(money_short($hero_work['price'])) ?></p>
                   </div>
-                  <p class="num text-sm shrink-0"><?= e(money_short($hero_work['price'])) ?></p>
                 </div>
               </a>
             </div>
           <?php endif; ?>
         </div>
       </div>
+    </div>
 
-      <dl class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-7 mt-4 pt-10 rule-t" data-reveal-group="80">
+    <div class="shell relative pb-7 sm:pb-9">
+      <dl class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-5 pt-7 rule-t" data-reveal-group="80">
         <?php foreach (STATS as $stat): ?>
           <div data-reveal="up">
             <dt class="display d-2 num"><span data-count="<?= (int) $stat['value'] ?>">0</span><?= e($stat['suffix']) ?></dt>
@@ -93,6 +108,10 @@ include __DIR__ . '/includes/head.php';
           </div>
         <?php endforeach; ?>
       </dl>
+
+      <p class="flex items-center gap-3 mt-5 label-xs text-muted" aria-hidden="true">
+        <span class="scroll-cue"></span>Scroll
+      </p>
     </div>
   </section>
 

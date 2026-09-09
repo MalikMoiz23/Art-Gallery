@@ -202,6 +202,26 @@ body.is-locked { overflow: hidden; }
 .is-in .split-line > i,
 .split-line.is-in > i { transform: none; opacity: 1; }
 
+/* Word-by-word reveal. The mask needs a little slack or Fraunces descenders
+   get clipped at the bottom of each word box. */
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.split-word > i {
+  display: inline-block;
+  font-style: inherit;
+  transform: translate3d(0, 115%, 0);
+  opacity: 0;
+  transition: transform 0.95s var(--ease), opacity 0.95s var(--ease);
+  transition-delay: var(--word-delay, 0ms);
+}
+.is-in .split-word > i,
+.split-word.is-in > i { transform: none; opacity: 1; }
+
 .split-char {
   display: inline-block;
   transform: translate3d(0, 0.55em, 0);
@@ -271,6 +291,55 @@ body.is-locked { overflow: hidden; }
   box-shadow:
     0 1px 2px rgb(23 25 23 / 0.06),
     0 30px 46px -26px rgb(23 25 23 / 0.42);
+}
+
+/* --------------------------------------------------------- hero wall */
+
+/* A pool of light falling across the beige, plus a faint gather of shade at
+   the foot of the wall. Enough to read as a lit surface, not a flat fill. */
+.hero-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 52% at 66% 34%, rgb(255 255 255 / 0.4), transparent 64%),
+    linear-gradient(180deg, transparent 58%, rgb(23 25 23 / 0.06) 100%);
+}
+
+/* Works hung on that wall carry a deeper cast shadow than a card would. */
+.hero-hang .frame {
+  box-shadow:
+    0 2px 3px rgb(23 25 23 / 0.07),
+    0 28px 44px -22px rgb(23 25 23 / 0.5);
+}
+.hero-hang:hover .frame {
+  transform: translateY(-7px);
+  box-shadow:
+    0 2px 3px rgb(23 25 23 / 0.08),
+    0 44px 58px -24px rgb(23 25 23 / 0.55);
+}
+
+/* Scroll cue: a hairline that keeps travelling down its own track. */
+.scroll-cue {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 42px;
+  overflow: hidden;
+  background: var(--hair);
+}
+.scroll-cue::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 40%;
+  background: var(--char);
+  animation: cue 2.4s var(--ease-swing) infinite;
+}
+@keyframes cue {
+  0%   { transform: translateY(-100%); }
+  60%  { transform: translateY(250%); }
+  100% { transform: translateY(250%); }
 }
 
 /* --------------------------------------------------- tilt + highlight */
@@ -838,6 +907,7 @@ body.is-locked .wa-fab { opacity: 0; visibility: hidden; }
   [data-reveal],
   [data-reveal].is-in { opacity: 1 !important; transform: none !important; }
   .split-line > i,
+  .split-word > i,
   .split-char { opacity: 1 !important; transform: none !important; }
   [data-img] { opacity: 1 !important; }
   [data-reveal="clip"]::after,

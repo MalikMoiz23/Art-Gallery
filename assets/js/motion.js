@@ -110,7 +110,28 @@
     });
   }
 
-  function splitChars(el) {
+  // Each word rides up out of its own mask, one after the next.
+function splitWords(el) {
+  var text = el.getAttribute('data-split-text');
+  if (text === null) {
+    text = el.textContent.replace(/\s+/g, ' ').trim();
+    el.setAttribute('data-split-text', text);
+  }
+  el.textContent = '';
+  var parts = text.split(' ');
+  parts.forEach(function (word, i) {
+    var wrap = document.createElement('span');
+    wrap.className = 'split-word';
+    var inner = document.createElement('i');
+    inner.textContent = word;
+    inner.style.setProperty('--word-delay', i * 115 + 'ms');
+    wrap.appendChild(inner);
+    el.appendChild(wrap);
+    if (i < parts.length - 1) el.appendChild(document.createTextNode(' '));
+  });
+}
+
+function splitChars(el) {
     var text = el.getAttribute('data-split-text');
     if (text === null) {
       text = el.textContent.trim();
@@ -131,7 +152,9 @@
     if (!targets.length || reduced) return;
 
     targets.forEach(function (el) {
-      if (el.getAttribute('data-split') === 'chars') splitChars(el);
+      var mode = el.getAttribute('data-split');
+      if (mode === 'chars') splitChars(el);
+      else if (mode === 'words') splitWords(el);
       else splitLines(el);
       if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', 'fade');
     });
@@ -351,8 +374,10 @@
       clearTimeout(t);
       t = setTimeout(function () {
         // Re-split only headings that have not played yet.
+        // Only line-split headings depend on the measured width.
         document.querySelectorAll('[data-split]:not(.is-in)').forEach(function (el) {
-          if (el.getAttribute('data-split') !== 'chars') splitLines(el);
+          var mode = el.getAttribute('data-split');
+          if (mode !== 'chars' && mode !== 'words') splitLines(el);
         });
         measure();
       }, 180);
