@@ -1,0 +1,1115 @@
+/* ==========================================================================
+   Nuqta — hand-written layer.
+   Loaded after tailwind.css. Holds motion primitives, the framed-artwork
+   component and anything Tailwind utilities express badly.
+   ========================================================================== */
+
+/* Everything below sits in Tailwind's `components` layer, which is declared
+   before `utilities`. Unlayered rules would outrank every utility, so
+   `hidden sm:grid` on a .icon-btn (or .btn) could never hide it. */
+@layer components {
+
+
+:root {
+  --wall: #090807;
+  --wall-lit: #191614;
+  --paper: #F8F5EF;
+  --brass: #C8A45C;
+  --clay: #B4553A;
+  --hair: rgb(212 202 186 / 0.14);
+  --hair-strong: rgb(212 202 186 / 0.26);
+
+  --header-h: 76px;
+  --gutter: clamp(1.25rem, 4vw, 5rem);
+  --shell: 1560px;
+
+  --dur-1: 0.3s;
+  --dur-2: 0.6s;
+  --dur-3: 1.1s;
+  --dur-4: 1.6s;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-swing: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* --------------------------------------------------------------- base */
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--wall);
+  color: var(--paper);
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--brass);
+  color: #0b0a09;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Thin, warm scrollbar on the dark shell. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(200 164 92 / 0.4) transparent;
+}
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-track { background: #0f0d0b; }
+*::-webkit-scrollbar-thumb {
+  background: rgb(200 164 92 / 0.32);
+  border: 2px solid #0f0d0b;
+  border-radius: 99px;
+}
+*::-webkit-scrollbar-thumb:hover { background: rgb(200 164 92 / 0.6); }
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------------------------------------------------------- typography */
+
+.display {
+  font-family: "Fraunces", "Iowan Old Style", Georgia, serif;
+  font-weight: 360;
+  letter-spacing: -0.028em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.d-hero  { font-size: clamp(3.1rem, 11.5vw, 11rem); line-height: 0.84; }
+.d-1     { font-size: clamp(2.4rem, 6.6vw, 6rem); }
+.d-2     { font-size: clamp(1.9rem, 4.2vw, 3.6rem); }
+.d-3     { font-size: clamp(1.4rem, 2.4vw, 2.15rem); line-height: 1.05; }
+.d-4     { font-size: clamp(1.15rem, 1.5vw, 1.45rem); line-height: 1.15; }
+
+.lede {
+  font-size: clamp(1.02rem, 1.35vw, 1.3rem);
+  line-height: 1.62;
+  color: rgb(212 202 186 / 0.82);
+  text-wrap: pretty;
+}
+
+.prose-note {
+  color: rgb(212 202 186 / 0.72);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Italic display used for pull quotes and the odd emphasised word. */
+.ital {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-weight: 330;
+}
+
+/* Link with a rule that draws itself in. */
+.ul-draw {
+  position: relative;
+  display: inline-block;
+}
+.ul-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-2) var(--ease);
+}
+.ul-draw:hover::after,
+.ul-draw:focus-visible::after { transform: scaleX(1); }
+
+/* Nav link whose label swaps upward on hover. */
+.swap {
+  position: relative;
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1.1;
+}
+.swap > span {
+  display: block;
+  transition: transform var(--dur-2) var(--ease);
+}
+.swap > span:last-child {
+  position: absolute;
+  inset: 0;
+  transform: translateY(105%);
+  color: var(--brass);
+}
+.swap:hover > span:first-child { transform: translateY(-105%); }
+.swap:hover > span:last-child { transform: translateY(0); }
+
+/* ------------------------------------------------------------- motion */
+
+/* Reveal. JS adds .is-in when the element crosses the viewport. */
+[data-reveal] {
+  will-change: transform, opacity, clip-path;
+  transition:
+    opacity var(--dur-3) var(--ease),
+    transform var(--dur-3) var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="up"]    { opacity: 0; transform: translate3d(0, 40px, 0); }
+[data-reveal="down"]  { opacity: 0; transform: translate3d(0, -28px, 0); }
+[data-reveal="left"]  { opacity: 0; transform: translate3d(44px, 0, 0); }
+[data-reveal="right"] { opacity: 0; transform: translate3d(-44px, 0, 0); }
+[data-reveal="fade"]  { opacity: 0; }
+[data-reveal="scale"] { opacity: 0; transform: scale(1.06); }
+/* clip/wipe use a curtain overlay, never clip-path on the observed node:
+   a fully clipped element has an empty intersection rect, so IntersectionObserver
+   would never fire and it could never reveal itself. */
+[data-reveal="clip"],
+[data-reveal="wipe"] { position: relative; overflow: hidden; }
+[data-reveal="clip"]::after,
+[data-reveal="wipe"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: var(--curtain, var(--wall));
+  transition: transform 1.25s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="clip"]::after { transform-origin: bottom; }
+[data-reveal="wipe"]::after { transform-origin: right; }
+[data-reveal="clip"].is-in::after { transform: scaleY(0); }
+[data-reveal="wipe"].is-in::after { transform: scaleX(0); }
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Split-text: each line sits in a masked track. */
+.split-line {
+  display: block;
+  overflow: hidden;
+}
+.split-line > i {
+  display: block;
+  font-style: inherit;
+  transform: translate3d(0, 115%, 0) rotate(2deg);
+  transition:
+    transform 1.15s var(--ease),
+    opacity 1.15s var(--ease);
+  transition-delay: var(--line-delay, 0ms);
+  opacity: 0;
+}
+.is-in .split-line > i,
+.split-line.is-in > i {
+  transform: none;
+  opacity: 1;
+}
+
+/* Per-character stagger, used sparingly on short headings. */
+.split-char {
+  display: inline-block;
+  transform: translate3d(0, 0.7em, 0);
+  opacity: 0;
+  transition: transform 0.9s var(--ease), opacity 0.9s var(--ease);
+  transition-delay: var(--char-delay, 0ms);
+}
+.is-in .split-char { transform: none; opacity: 1; }
+
+/* Parallax and scroll-velocity skew are driven from motion.js. */
+[data-parallax] { will-change: transform; }
+
+.vel-skew {
+  transform: skewY(var(--vel, 0deg));
+  transition: transform 0.28s var(--ease);
+}
+
+/* ------------------------------------------------------ imagery */
+
+[data-img] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 1.1s var(--ease), transform 1.4s var(--ease);
+}
+[data-img].is-loaded {
+  opacity: 1;
+  transform: none;
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background: #131110;
+}
+.media > img { position: absolute; inset: 0; }
+
+.media-zoom > img {
+  transition: transform 1.5s var(--ease), opacity 1.1s var(--ease);
+}
+.group:hover .media-zoom > img,
+.media-zoom:hover > img { transform: scale(1.07); }
+
+/* Duotone-ish warm grade lifted on hover. */
+.grade > img {
+  filter: saturate(0.86) contrast(1.04) brightness(0.94);
+  transition: filter 1s var(--ease), transform 1.5s var(--ease);
+}
+.group:hover .grade > img { filter: none; }
+
+/* ------------------------------------------- framed artwork component */
+
+/* A work presented as it hangs: mat, hardwood profile, cast shadow. */
+.frame {
+  position: relative;
+  padding: clamp(0.5rem, 1.1vw, 1rem);
+  background:
+    linear-gradient(150deg, #2b241c 0%, #17130f 42%, #241d16 100%);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.07) inset,
+    0 -1px 0 rgb(0 0 0 / 0.5) inset,
+    0 34px 60px -28px rgb(0 0 0 / 0.85),
+    0 4px 14px -6px rgb(0 0 0 / 0.6);
+  transition: transform 1s var(--ease), box-shadow 1s var(--ease);
+}
+.frame-mat {
+  position: relative;
+  padding: clamp(0.75rem, 2.1vw, 2.1rem);
+  background: #efe9df;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.16) inset;
+}
+.frame-mat.is-dark { background: #14110e; }
+
+/* Accent frames are small enough that the fluid padding swallows the image. */
+.frame-sm { padding: 5px; }
+.frame-sm .frame-mat { padding: 9px; }
+
+/* Raking gallery light across the glazing. */
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(112deg, rgb(255 255 255 / 0.1) 0%, transparent 26%, transparent 74%, rgb(255 255 255 / 0.05) 100%);
+  mix-blend-mode: screen;
+}
+
+.frame:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.09) inset,
+    0 -1px 0 rgb(0 0 0 / 0.5) inset,
+    0 52px 84px -30px rgb(0 0 0 / 0.9),
+    0 6px 18px -6px rgb(0 0 0 / 0.65);
+}
+
+/* Spotlight pool beneath a hero work. */
+.spot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -18%;
+  width: min(120%, 1100px);
+  aspect-ratio: 1 / 1;
+  translate: -50% 0;
+  background: radial-gradient(circle at 50% 40%, rgb(200 164 92 / 0.16), rgb(200 164 92 / 0.05) 42%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hero scrim. The backdrop should read as depth and never compete with the
+   type. A portrait viewport crops the landscape plate far tighter, pushing the
+   bright window into the middle of the text, so it needs a heavier veil. */
+.hero-scrim {
+  background:
+    linear-gradient(180deg, rgb(9 8 7 / 0.72) 0%, rgb(9 8 7 / 0.46) 34%, rgb(9 8 7 / 0.93) 100%),
+    radial-gradient(70% 55% at 74% 26%, rgb(200 164 92 / 0.16), transparent 64%);
+}
+@media (max-width: 900px) {
+  .hero-scrim {
+    background:
+      linear-gradient(180deg, rgb(9 8 7 / 0.9) 0%, rgb(9 8 7 / 0.84) 38%, rgb(9 8 7 / 0.97) 100%),
+      radial-gradient(85% 45% at 70% 16%, rgb(200 164 92 / 0.12), transparent 62%);
+  }
+}
+
+/* --------------------------------------------------- tilt + spotlight */
+
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.7s var(--ease);
+}
+.tilt-inner {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease);
+}
+
+/* Cursor-tracked highlight on cards. */
+.glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(200 164 92 / 0.14),
+    transparent 62%
+  );
+}
+.glow:hover::before { opacity: 1; }
+
+/* Magnetic button: JS writes --tx/--ty from pointer offset. */
+.magnet {
+  transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0);
+  transition: transform 0.45s var(--ease);
+}
+
+/* ------------------------------------------------------------ buttons */
+
+.btn {
+  --btn-bg: var(--brass);
+  --btn-fg: #100e0b;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  isolation: isolate;
+  transition: color 0.5s var(--ease), background 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+.btn > span { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 0.55rem; }
+
+/* Fill wipes up from the bottom edge. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--paper);
+  transform: translate3d(0, 101%, 0);
+  transition: transform 0.6s var(--ease);
+}
+.btn:hover::before { transform: none; }
+.btn:hover { color: #100e0b; }
+
+.btn-ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--paper);
+  border: 1px solid var(--hair-strong);
+}
+.btn-ghost::before { background: var(--brass); }
+.btn-ghost:hover { border-color: var(--brass); }
+
+.btn-solid-dark {
+  --btn-bg: #191614;
+  --btn-fg: var(--paper);
+}
+.btn-solid-dark::before { background: var(--brass); }
+
+.btn:disabled { opacity: 0.42; pointer-events: none; }
+
+.btn-sm { padding: 0.62rem 1.05rem; font-size: 0.68rem; }
+
+/* Circular icon button with an expanding ring. */
+.icon-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--hair-strong);
+  border-radius: 999px;
+  transition: border-color 0.5s var(--ease), background 0.5s var(--ease), color 0.5s var(--ease);
+}
+.icon-btn:hover {
+  border-color: var(--brass);
+  background: rgb(200 164 92 / 0.1);
+  color: var(--brass);
+}
+
+/* -------------------------------------------------------------- chips */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.62rem;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(212 202 186 / 0.78);
+}
+.chip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 99px;
+  background: currentColor;
+}
+.chip-brass { color: var(--brass); border-color: rgb(200 164 92 / 0.42); }
+.chip-clay  { color: var(--clay); border-color: rgb(180 85 58 / 0.46); }
+.chip-muted { color: rgb(212 202 186 / 0.45); }
+
+/* Filter pill in the gallery toolbar. */
+.pill {
+  position: relative;
+  padding: 0.55rem 1.05rem;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(212 202 186 / 0.7);
+  white-space: nowrap;
+  transition: color 0.4s var(--ease), border-color 0.4s var(--ease), background 0.4s var(--ease);
+}
+.pill:hover { color: var(--paper); border-color: var(--hair-strong); }
+.pill[aria-pressed="true"] {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: #100e0b;
+}
+
+/* ------------------------------------------------------------- header */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  transition: transform 0.6s var(--ease), background 0.6s var(--ease), backdrop-filter 0.6s var(--ease), border-color 0.6s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.site-header.is-stuck {
+  background: rgb(9 8 7 / 0.72);
+  backdrop-filter: blur(18px) saturate(1.2);
+  border-bottom-color: var(--hair);
+}
+.site-header.is-hidden { transform: translate3d(0, -104%, 0); }
+
+.scroll-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 70;
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-rail > i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--clay), var(--brass));
+}
+
+/* Full-screen mobile menu. */
+.menu-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: grid;
+  background: #0b0a09;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.85s var(--ease);
+  pointer-events: none;
+}
+.menu-sheet.is-open {
+  clip-path: inset(0 0 0 0);
+  pointer-events: auto;
+}
+.menu-sheet .m-item {
+  opacity: 0;
+  transform: translate3d(0, 60%, 0);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.menu-sheet.is-open .m-item { opacity: 1; transform: none; }
+
+/* --------------------------------------------------------- preloader */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: #090807;
+  transition: clip-path 1.1s var(--ease), opacity 0.4s linear 0.9s;
+}
+.preloader.is-done {
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+.pre-bar {
+  width: min(340px, 62vw);
+  height: 1px;
+  background: var(--hair-strong);
+  overflow: hidden;
+}
+.pre-bar > i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--brass);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+  transition: transform 0.25s linear;
+}
+
+/* Wipe played on internal navigation. */
+.page-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: #090807;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.7s var(--ease);
+  pointer-events: none;
+}
+.page-veil.is-on { clip-path: inset(0 0 0 0); }
+
+/* ------------------------------------------------------------- cursor */
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  pointer-events: none;
+  border-radius: 999px;
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--paper);
+}
+.cursor-ring {
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border: 1px solid rgb(248 245 239 / 0.55);
+  display: grid;
+  place-items: center;
+  transition: width 0.4s var(--ease), height 0.4s var(--ease), margin 0.4s var(--ease), background 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.cursor-ring > span {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0b0a09;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.cursor-ring.is-label {
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  background: var(--paper);
+  border-color: var(--paper);
+}
+.cursor-ring.is-label > span { opacity: 1; }
+.cursor-ring.is-tight { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* --------------------------------------------------------- film grain */
+
+.grain {
+  position: fixed;
+  inset: -150%;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 7s steps(6) infinite;
+}
+@keyframes grain-shift {
+  0%   { transform: translate3d(0, 0, 0); }
+  20%  { transform: translate3d(-6%, 4%, 0); }
+  40%  { transform: translate3d(4%, -5%, 0); }
+  60%  { transform: translate3d(-3%, 6%, 0); }
+  80%  { transform: translate3d(5%, 2%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Fine plaster texture for the light "paper" sections. */
+.plaster {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgb(180 85 58 / 0.05), transparent 42%),
+    radial-gradient(circle at 82% 78%, rgb(200 164 92 / 0.08), transparent 46%);
+}
+
+/* --------------------------------------------------------- marquee */
+
+.marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee:hover { animation-play-state: paused; }
+.marquee-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* ------------------------------------------------- pinned horizontal */
+
+.pin-vp {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.pin-track {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 3rem);
+  will-change: transform;
+  transform: translate3d(var(--x, 0px), 0, 0);
+  padding-inline: var(--gutter);
+}
+
+/* Drag-scrolled rail used on touch and as a fallback. */
+.rail {
+  display: flex;
+  gap: clamp(1rem, 2.4vw, 2.25rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-inline: var(--gutter);
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail > * { scroll-snap-align: center; flex: 0 0 auto; }
+.rail.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+
+/* ------------------------------------------------------------ drawer */
+
+.drawer-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 74;
+  background: rgb(5 4 4 / 0.68);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease);
+}
+.drawer-scrim.is-open { opacity: 1; pointer-events: auto; }
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 75;
+  width: min(460px, 100vw);
+  display: flex;
+  flex-direction: column;
+  background: #0f0d0b;
+  border-left: 1px solid var(--hair);
+  transform: translate3d(101%, 0, 0);
+  transition: transform 0.72s var(--ease);
+}
+.drawer.is-open { transform: none; }
+
+.drawer-row {
+  opacity: 0;
+  transform: translate3d(28px, 0, 0);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+}
+.drawer.is-open .drawer-row { opacity: 1; transform: none; }
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  min-width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--brass);
+  color: #0b0a09;
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1;
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.badge.is-on { transform: scale(1); }
+.badge.is-bump { animation: bump 0.5s var(--ease); }
+@keyframes bump {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.42); }
+  100% { transform: scale(1); }
+}
+
+/* ------------------------------------------------------------- toasts */
+
+.toast-stack {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(1.5rem, 4vh, 2.75rem);
+  z-index: 88;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: min(420px, calc(100vw - 2rem));
+  pointer-events: none;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: #16130f;
+  border: 1px solid var(--hair-strong);
+  border-left: 2px solid var(--brass);
+  box-shadow: 0 22px 44px -18px rgb(0 0 0 / 0.8);
+  opacity: 0;
+  transform: translate3d(0, 20px, 0) scale(0.97);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+}
+.toast.is-in { opacity: 1; transform: none; }
+
+/* ----------------------------------------------------------- lightbox */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 92;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgb(6 5 5 / 0.94);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s var(--ease);
+}
+.lightbox.is-open { opacity: 1; pointer-events: auto; }
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transform: scale(0.94);
+  transition: transform 0.7s var(--ease);
+  cursor: zoom-in;
+}
+.lightbox.is-open img { transform: none; }
+.lightbox img.is-zoomed {
+  transform: scale(2);
+  cursor: zoom-out;
+  transform-origin: var(--ox, 50%) var(--oy, 50%);
+}
+
+/* --------------------------------------------------------- accordion */
+
+.acc-item { border-top: 1px solid var(--hair); }
+.acc-btn {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  width: 100%;
+  padding: 1.4rem 0;
+  text-align: left;
+  transition: color 0.4s var(--ease);
+}
+.acc-btn:hover { color: var(--brass); }
+.acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.65s var(--ease);
+}
+.acc-item.is-open .acc-panel { grid-template-rows: 1fr; }
+.acc-panel > div { overflow: hidden; }
+.acc-sign {
+  position: relative;
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  margin-top: 0.4rem;
+}
+.acc-sign::before,
+.acc-sign::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.5s var(--ease);
+}
+.acc-sign::after { transform: rotate(90deg); }
+.acc-item.is-open .acc-sign::after { transform: rotate(0deg); }
+
+/* ------------------------------------------------------------- forms */
+
+.field { position: relative; }
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 1.5rem 0 0.62rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hair-strong);
+  color: var(--paper);
+  font-size: 0.98rem;
+  transition: border-color 0.4s var(--ease);
+  border-radius: 0;
+}
+.field textarea { min-height: 110px; resize: vertical; }
+.field select { appearance: none; cursor: pointer; }
+.field select option { background: #16130f; color: var(--paper); }
+.field label {
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  font-size: 0.9rem;
+  color: rgb(212 202 186 / 0.55);
+  pointer-events: none;
+  transform-origin: left;
+  transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+}
+.field input:focus + label,
+.field textarea:focus + label,
+.field select:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:not(:placeholder-shown) + label,
+.field.is-filled label {
+  transform: translateY(-1.15rem) scale(0.74);
+  color: var(--brass);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus { border-color: var(--brass); outline: none; }
+.field.is-invalid input,
+.field.is-invalid select,
+.field.is-invalid textarea { border-color: var(--clay); }
+.field-error {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--clay);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.field.is-invalid .field-error { opacity: 1; transform: none; }
+
+/* Segmented radio group used for booking type and slots. */
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label {
+  display: block;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--hair);
+  cursor: pointer;
+  transition: border-color 0.4s var(--ease), background 0.4s var(--ease), color 0.4s var(--ease);
+}
+.seg label:hover { border-color: var(--hair-strong); }
+.seg input:checked + label {
+  border-color: var(--brass);
+  background: rgb(200 164 92 / 0.09);
+}
+.seg input:focus-visible + label { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+/* Step rail on the booking form. */
+.steps { counter-reset: s; }
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--hair-strong);
+  transition: background 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.step-dot.is-on { background: var(--brass); transform: scale(1.5); }
+.step-panel { display: none; }
+.step-panel.is-on { display: block; }
+
+/* --------------------------------------------------------- whatsapp */
+
+.wa-fab {
+  position: fixed;
+  pointer-events: none;
+  right: clamp(1rem, 2.5vw, 2rem);
+  bottom: clamp(1rem, 2.5vw, 2rem);
+  z-index: 78;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+.wa-card {
+  width: min(310px, calc(100vw - 2.5rem));
+  padding: 1.1rem 1.15rem;
+  background: #0f0d0b;
+  border: 1px solid var(--hair-strong);
+  box-shadow: 0 26px 54px -22px rgb(0 0 0 / 0.85);
+  transform-origin: bottom right;
+  opacity: 0;
+  transform: translate3d(0, 12px, 0) scale(0.94);
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+}
+.wa-card.is-open { opacity: 1; transform: none; pointer-events: auto; }
+.wa-trigger {
+  position: relative;
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: #1f9d5b;
+  color: #fff;
+  box-shadow: 0 14px 30px -10px rgb(31 157 91 / 0.6);
+  transition: transform 0.5s var(--ease-swing), background 0.4s var(--ease);
+}
+.wa-trigger:hover { transform: scale(1.07); background: #23ac64; }
+.wa-trigger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid #1f9d5b;
+  animation: pulse-ring 2.6s var(--ease-swing) infinite;
+}
+
+/* ------------------------------------------------------ masonry grid */
+
+/* Columns keep the varied aspect ratios of the collection intact. */
+.masonry {
+  column-count: 1;
+  column-gap: clamp(1rem, 2vw, 1.75rem);
+}
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: clamp(1rem, 2vw, 1.75rem);
+}
+@media (min-width: 640px)  { .masonry { column-count: 2; } }
+@media (min-width: 1024px) { .masonry { column-count: 3; } }
+@media (min-width: 1536px) { .masonry { column-count: 4; } }
+
+/* Hidden by the filter; the FLIP pass in app.js animates the gap closing. */
+.is-filtered-out { display: none; }
+
+/* --------------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  [data-reveal],
+  [data-reveal].is-in {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .split-line > i,
+  .split-char { opacity: 1 !important; transform: none !important; }
+  [data-reveal="clip"]::after,
+  [data-reveal="wipe"]::after { display: none !important; }
+  [data-img] { opacity: 1 !important; transform: none !important; }
+  .grain { display: none; }
+  .preloader { display: none; }
+}
+
+/* Printing a work's details should not carry the furniture. */
+@media print {
+  .site-header, .wa-fab, .grain, .drawer, .drawer-scrim,
+  .cursor-dot, .cursor-ring, .scroll-rail, .toast-stack { display: none !important; }
+  body { background: #fff; color: #000; }
+}
+
+/* Below the desktop breakpoint the pinned track degrades to a snap rail. */
+@media (max-width: 1023px) {
+  [data-pin] { height: auto !important; }
+  .pin-vp {
+    position: static;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .pin-track {
+    transform: none !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-block: 0.5rem;
+  }
+  .pin-track::-webkit-scrollbar { display: none; }
+  .pin-track > * { scroll-snap-align: center; }
+}
+}
+
+/* Unlayered on purpose: must outrank the component display rules above so the
+   hidden attribute always wins (booking step buttons, cart toggles). */
+[hidden] { display: none !important; }
