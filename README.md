@@ -76,9 +76,9 @@ scheme. The build fails loudly if any page still points at a `.php` URL.
 Pushing to `main` triggers `.github/workflows/pages.yml`, which runs that build
 and publishes `dist/` to GitHub Pages.
 
-**One-time setup:** repository *Settings → Pages → Build and deployment →
-Source* must be set to **GitHub Actions**. Until that is set the workflow builds
-but has nowhere to publish.
+The workflow enables Pages itself on first run. If your account or org blocks
+that, set *Settings → Pages → Build and deployment → Source* to **GitHub
+Actions** once by hand and re-run the workflow.
 
 Query strings survive the export, so `gallery.html?category=Print` and
 `booking.html?work=one-chance` still work — both are read on the client.
