@@ -114,7 +114,7 @@ function picture(string $file, string $alt, string $class = '', bool $priority =
     $m = media($file);
     $style = $m['lqip'] !== ''
         ? "background-image:url('{$m['lqip']}');background-size:cover;background-position:center;"
-        : 'background-color:#1c1917;';
+        : 'background-color:#DFE0DB;';
 
     return sprintf(
         '<img src="%s" alt="%s" width="%d" height="%d" class="%s" style="%s" %s %s data-img>',
@@ -208,10 +208,10 @@ function price_range(): array
 function status_meta(string $status): array
 {
     return [
-        'available' => ['label' => 'Available',  'tone' => 'brass'],
-        'reserved'  => ['label' => 'Reserved',   'tone' => 'clay'],
-        'sold'      => ['label' => 'Collected',  'tone' => 'muted'],
-    ][$status] ?? ['label' => ucfirst($status), 'tone' => 'muted'];
+        'available' => ['label' => 'Available',  'tone' => 'available'],
+        'reserved'  => ['label' => 'Reserved',   'tone' => 'reserved'],
+        'sold'      => ['label' => 'Collected',  'tone' => 'collected'],
+    ][$status] ?? ['label' => ucfirst($status), 'tone' => 'collected'];
 }
 
 /** Marks the active nav item. */

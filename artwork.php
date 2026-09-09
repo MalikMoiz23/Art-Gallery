@@ -65,7 +65,7 @@ include __DIR__ . '/includes/head.php';
                 data-zoom="<?= e(img_src($work['img'])) ?>" aria-label="Enlarge <?= e($work['title']) ?>">
           <div class="frame">
             <div class="frame-mat<?= $work['category'] === 'Sculpture & Ceramics' ? ' is-dark' : '' ?>">
-              <div class="media grade" style="aspect-ratio:<?= (int) $m['w'] ?>/<?= (int) $m['h'] ?>">
+              <div class="media" style="aspect-ratio:<?= (int) $m['w'] ?>/<?= (int) $m['h'] ?>">
                 <?= picture($work['img'], $work['title'] . ' by ' . ($artist['name'] ?? ''), '', true) ?>
               </div>
             </div>
@@ -127,7 +127,7 @@ include __DIR__ . '/includes/head.php';
                       data-unique="<?= $isPrint ? '0' : '1' ?>">
                 <span data-add-label>Add to enquiry list</span>
               </button>
-              <div class="flex gap-2.5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <a href="<?= e(wa_link($waMessage)) ?>" target="_blank" rel="noopener" class="btn btn-ghost flex-1">
                   <span>Ask on WhatsApp</span>
                 </a>
@@ -190,7 +190,7 @@ include __DIR__ . '/includes/head.php';
             <div class="grid grid-cols-2 gap-4" data-reveal-group="80">
               <?php foreach (array_slice($siblings, 0, 2) as $sib): $sm = media($sib['img']); ?>
                 <a href="artwork.php?slug=<?= e($sib['slug']) ?>" class="group" data-reveal="up">
-                  <span class="media grade block" style="aspect-ratio:<?= (int) $sm['w'] ?>/<?= (int) $sm['h'] ?>">
+                  <span class="media block" style="aspect-ratio:<?= (int) $sm['w'] ?>/<?= (int) $sm['h'] ?>">
                     <?= picture($sib['img'], $sib['title']) ?>
                   </span>
                   <span class="block display d-4 text-ink mt-3 group-hover:text-muted transition-colors"><?= e($sib['title']) ?></span>

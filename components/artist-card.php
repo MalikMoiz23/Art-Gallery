@@ -38,7 +38,7 @@ $strip = array_slice($works, 0, 3);
 
     <div class="flex sm:flex-col gap-2 shrink-0">
       <?php foreach ($strip as $work): $m = media($work['img']); ?>
-        <span class="media grade w-16 sm:w-20" style="aspect-ratio:1/1">
+        <span class="media w-16 sm:w-20" style="aspect-ratio:1/1">
           <?= picture($work['img'], $work['title'], '', false) ?>
         </span>
       <?php endforeach; ?>

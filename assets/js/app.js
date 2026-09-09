@@ -30,7 +30,7 @@
     var el = document.createElement('div');
     el.className = 'toast';
     if (tone === 'warn') el.style.borderLeftColor = 'var(--clay)';
-    el.innerHTML = '<span class="label-xs" style="color:var(--brass)">' + (tone === 'warn' ? 'Note' : 'Added') +
+    el.innerHTML = '<span class="label-xs" style="color:var(--muted)">' + (tone === 'warn' ? 'Note' : 'Added') +
       '</span><p class="text-sm" style="color:rgb(212 202 186 / .9)"></p>';
     qs('p', el).textContent = message;
     stack.appendChild(el);
@@ -121,12 +121,12 @@
     var max = item.unique ? 1 : window.Cart.MAX_EDITION;
     return '' +
       '<li class="drawer-row flex gap-4 py-5 rule-b" data-row="' + item.slug + '">' +
-        '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="media grade w-20 shrink-0" style="aspect-ratio:3/4">' +
+        '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="media w-20 shrink-0" style="aspect-ratio:3/4">' +
           '<img src="assets/img/' + item.img + '" alt="" class="is-loaded" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' +
         '</a>' +
         '<div class="min-w-0 flex-1">' +
-          '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="d-4 display block leading-tight hover:text-brass-500 transition-colors">' + esc(item.title) + '</a>' +
-          '<p class="text-xs text-paper-400 mt-1">' + esc(item.artist) + (item.edition ? ' · ' + esc(item.edition) : '') + '</p>' +
+          '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="d-4 display block leading-tight hover:text-muted transition-colors">' + esc(item.title) + '</a>' +
+          '<p class="text-xs text-muted mt-1">' + esc(item.artist) + (item.edition ? ' · ' + esc(item.edition) : '') + '</p>' +
           '<div class="flex items-center justify-between gap-3 mt-3">' +
             '<div class="flex items-center gap-2">' +
               (max > 1
@@ -135,10 +135,10 @@
                   '<button class="icon-btn !w-7 !h-7 text-sm" data-qty="1" aria-label="Increase quantity">+</button>'
                 : '<span class="chip chip-muted">Unique work</span>') +
             '</div>' +
-            '<span class="num text-sm text-brass-500">' + window.Cart.money(item.price * item.qty) + '</span>' +
+            '<span class="num text-sm text-ink">' + window.Cart.money(item.price * item.qty) + '</span>' +
           '</div>' +
         '</div>' +
-        '<button class="text-paper-500 hover:text-clay-500 transition-colors self-start" data-drop aria-label="Remove ' + esc(item.title) + '">' +
+        '<button class="text-muted hover:text-ink transition-colors self-start" data-drop aria-label="Remove ' + esc(item.title) + '">' +
           '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 2l11 11M13 2L2 13"/></svg>' +
         '</button>' +
       '</li>';
@@ -211,25 +211,25 @@
       var max = item.unique ? 1 : window.Cart.MAX_EDITION;
       return '' +
         '<article class="grid grid-cols-[88px_1fr] sm:grid-cols-[130px_1fr_auto] gap-5 sm:gap-8 items-start py-8 rule-b" data-row="' + item.slug + '">' +
-          '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="media grade" style="aspect-ratio:3/4">' +
+          '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="media" style="aspect-ratio:3/4">' +
             '<img src="assets/img/' + item.img + '" alt="" class="is-loaded" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' +
           '</a>' +
           '<div>' +
-            '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="display d-3 hover:text-brass-500 transition-colors">' + esc(item.title) + '</a>' +
-            '<p class="text-sm text-paper-400 mt-2">' + esc(item.artist) + '</p>' +
-            '<p class="text-xs text-paper-500 mt-1">' + esc(item.edition || 'Unique work') + '</p>' +
+            '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="display d-3 hover:text-muted transition-colors">' + esc(item.title) + '</a>' +
+            '<p class="text-sm text-muted mt-2">' + esc(item.artist) + '</p>' +
+            '<p class="text-xs text-muted mt-1">' + esc(item.edition || 'Unique work') + '</p>' +
             '<div class="flex items-center gap-3 mt-5">' +
               (max > 1
                 ? '<button class="icon-btn !w-8 !h-8" data-qty="-1" aria-label="Reduce quantity">&minus;</button>' +
                   '<span class="num w-5 text-center" data-qty-value>' + item.qty + '</span>' +
                   '<button class="icon-btn !w-8 !h-8" data-qty="1" aria-label="Increase quantity">+</button>'
                 : '<span class="chip chip-muted">Unique · one only</span>') +
-              '<button class="text-xs label-xs text-paper-500 hover:text-clay-500 transition-colors ml-2" data-drop>Remove</button>' +
+              '<button class="text-xs label-xs text-muted hover:text-ink transition-colors ml-2" data-drop>Remove</button>' +
             '</div>' +
           '</div>' +
           '<div class="col-span-2 sm:col-span-1 text-left sm:text-right">' +
-            '<p class="num display d-4 text-brass-500">' + window.Cart.money(item.price * item.qty) + '</p>' +
-            (item.qty > 1 ? '<p class="text-xs text-paper-500 mt-1 num">' + window.Cart.money(item.price) + ' each</p>' : '') +
+            '<p class="num display d-4 text-ink">' + window.Cart.money(item.price * item.qty) + '</p>' +
+            (item.qty > 1 ? '<p class="text-xs text-muted mt-1 num">' + window.Cart.money(item.price) + ' each</p>' : '') +
           '</div>' +
         '</article>';
     }).join('');
@@ -456,7 +456,7 @@
       '<button class="icon-btn absolute top-5 right-5 z-10" data-lb-close aria-label="Close">' +
         '<svg width="16" height="16" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2l11 11M13 2L2 13"/></svg>' +
       '</button>' +
-      '<p class="absolute bottom-5 left-1/2 -translate-x-1/2 label-xs text-paper-500">Click the image to zoom · Esc to close</p>' +
+      '<p class="absolute bottom-5 left-1/2 -translate-x-1/2 label-xs text-muted">Click the image to zoom · Esc to close</p>' +
       // 1x1 transparent placeholder: an <img> with no src is invalid markup.
       '<img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">';
     document.body.appendChild(box);
@@ -651,7 +651,7 @@
       step = Math.max(0, Math.min(panels.length - 1, i));
       panels.forEach(function (p, n) { p.classList.toggle('is-on', n === step); });
       dots.forEach(function (d, n) { d.classList.toggle('is-on', n <= step); });
-      labels.forEach(function (l, n) { l.classList.toggle('text-paper-50', n === step); l.classList.toggle('text-paper-500', n !== step); });
+      labels.forEach(function (l, n) { l.classList.toggle('text-ink', n === step); l.classList.toggle('text-muted', n !== step); });
       if (prev) prev.hidden = step === 0;
       if (next) next.hidden = step === panels.length - 1;
       if (submit) submit.hidden = step !== panels.length - 1;

@@ -157,6 +157,13 @@ body.is-locked { overflow: hidden; }
 [data-reveal="left"]  { opacity: 0; transform: translate3d(28px, 0, 0); }
 [data-reveal="right"] { opacity: 0; transform: translate3d(-28px, 0, 0); }
 [data-reveal="fade"]  { opacity: 0; }
+
+/* On a 20px gutter a 28px horizontal offset starts outside the viewport and
+   gets clipped on the way in. Shorten the travel on small screens. */
+@media (max-width: 480px) {
+  [data-reveal="left"]  { transform: translate3d(14px, 0, 0); }
+  [data-reveal="right"] { transform: translate3d(-14px, 0, 0); }
+}
 [data-reveal="scale"] { opacity: 0; transform: scale(1.03); }
 
 /* clip/wipe use a curtain overlay, never clip-path on the observed node:
@@ -312,9 +319,9 @@ body.is-locked { overflow: hidden; }
   border-radius: 2px;
   background: var(--char);
   color: var(--paper);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
   cursor: pointer;
@@ -356,7 +363,11 @@ body.is-locked { overflow: hidden; }
 .btn-invert-ghost:hover { color: var(--ink); border-color: var(--paper); }
 
 .btn:disabled { opacity: 0.4; pointer-events: none; }
-.btn-sm { min-height: 38px; padding: 0.55rem 1rem; font-size: 0.66rem; }
+.btn-sm { min-height: 38px; padding: 0.55rem 1rem; font-size: 0.75rem; }
+
+@media (max-width: 380px) {
+  .btn { padding-inline: 1.05rem; letter-spacing: 0.09em; }
+}
 
 .icon-btn {
   position: relative;
@@ -380,9 +391,9 @@ body.is-locked { overflow: hidden; }
   padding: 0.28rem 0.6rem;
   border: 1px solid var(--hair);
   border-radius: 2px;
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -397,9 +408,9 @@ body.is-locked { overflow: hidden; }
   padding: 0.5rem 0.95rem;
   border: 1px solid var(--hair);
   border-radius: 999px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--muted);
   white-space: nowrap;
@@ -704,7 +715,7 @@ body.is-locked { overflow: hidden; }
 .field-error {
   display: block;
   margin-top: 0.35rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--ink);
   opacity: 0;

@@ -30,7 +30,7 @@ $haystack = strtolower(implode(' ', [
     <div class="frame" data-tilt="3.5">
       <div class="tilt-inner">
         <div class="frame-mat">
-          <div class="media media-zoom grade" style="aspect-ratio:<?= (int) $m['w'] ?>/<?= (int) $m['h'] ?>">
+          <div class="media media-zoom" style="aspect-ratio:<?= (int) $m['w'] ?>/<?= (int) $m['h'] ?>">
             <?= picture($work['img'], $work['title'] . ' by ' . $artist_label, '', $eager) ?>
           </div>
         </div>

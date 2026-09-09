@@ -27,7 +27,7 @@
           Send on WhatsApp
         </span>
       </a>
-      <div class="flex gap-2.5">
+      <div class="grid grid-cols-2 gap-2.5">
         <a href="cart.php" class="btn btn-ghost flex-1"><span>Review list</span></a>
         <button type="button" class="btn btn-ghost" data-cart-clear><span>Clear</span></button>
       </div>
