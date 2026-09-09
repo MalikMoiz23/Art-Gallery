@@ -1001,6 +1001,7 @@ body.is-locked {
 .wa-fab {
   position: fixed;
   pointer-events: none;
+  transition: opacity 0.35s var(--ease), visibility 0.35s;
   right: clamp(1rem, 2.5vw, 2rem);
   bottom: clamp(1rem, 2.5vw, 2rem);
   z-index: 78;
@@ -1009,6 +1010,14 @@ body.is-locked {
   align-items: flex-end;
   gap: 0.75rem;
 }
+/* The drawer, mobile menu and lightbox all lock the page. The floating button
+   outranks the drawer and the menu on z-index, so it has to stand down or it
+   covers their controls. */
+body.is-locked .wa-fab {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .wa-card {
   width: min(310px, calc(100vw - 2.5rem));
   padding: 1.1rem 1.15rem;
