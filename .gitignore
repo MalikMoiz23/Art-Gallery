@@ -1,6 +1,9 @@
 # dependencies
 node_modules/
 
+# static export output (built in CI, never committed)
+dist/
+
 # build cache
 .cache/
 src/.tailwindcss-cache/

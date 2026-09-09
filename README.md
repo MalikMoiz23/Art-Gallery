@@ -55,6 +55,34 @@ npm run css          # one-off, minified
 npm run css:watch    # rebuild on change
 ```
 
+## Deploying the demo
+
+The PHP here is templating only, so every route has exactly one output and the
+whole site pre-renders to flat HTML. That is what lets it sit on a static host.
+
+```bash
+npm run build        # -> dist/  (40 pages + assets)
+npm run serve:dist   # preview the export at localhost:8010
+```
+
+`scripts/build-static.mjs` starts a throwaway `php -S`, fetches every route,
+rewrites the links and writes `dist/`. Routes are flattened rather than nested —
+`artwork.php?slug=x` becomes `artwork-x.html` — so every page keeps the same
+relative depth and the existing `assets/...` links resolve without a `<base>` tag.
+It stamps `data-static` on `<html>`; the handful of links JavaScript builds at
+runtime (the enquiry drawer, the cart rows) read that flag and follow the same
+scheme. The build fails loudly if any page still points at a `.php` URL.
+
+Pushing to `main` triggers `.github/workflows/pages.yml`, which runs that build
+and publishes `dist/` to GitHub Pages.
+
+**One-time setup:** repository *Settings → Pages → Build and deployment →
+Source* must be set to **GitHub Actions**. Until that is set the workflow builds
+but has nowhere to publish.
+
+Query strings survive the export, so `gallery.html?category=Print` and
+`booking.html?work=one-chance` still work — both are read on the client.
+
 ## Layout
 
 ```
@@ -81,6 +109,8 @@ assets/
   js/cart.js            enquiry list state (localStorage)
   js/app.js             interface wiring — chrome, drawer, filters, booking flow
   img/manifest.json     intrinsic size + LQIP blur seed per image
+scripts/
+  build-static.mjs      pre-renders every route into dist/ for static hosting
 index.php gallery.php artwork.php artists.php artist.php
 cart.php booking.php contact.php 404.php
 ```

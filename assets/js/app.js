@@ -11,6 +11,16 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var WA = document.documentElement.getAttribute('data-wa') || '';
 
+  // The static export stamps data-static on <html> and flattens every route
+  // to its own .html file. Links built at runtime have to follow suit.
+  var STATIC = document.documentElement.hasAttribute('data-static');
+
+  function workHref(slug) {
+    return STATIC
+      ? 'artwork-' + slug + '.html'
+      : 'artwork.php?slug=' + encodeURIComponent(slug);
+  }
+
   function waLink(message) {
     return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(message);
   }
@@ -121,11 +131,11 @@
     var max = item.unique ? 1 : window.Cart.MAX_EDITION;
     return '' +
       '<li class="drawer-row flex gap-4 py-5 rule-b" data-row="' + item.slug + '">' +
-        '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="media w-20 shrink-0" style="aspect-ratio:3/4">' +
+        '<a href="' + workHref(item.slug) + '" class="media w-20 shrink-0" style="aspect-ratio:3/4">' +
           '<img src="assets/img/' + item.img + '" alt="" class="is-loaded" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' +
         '</a>' +
         '<div class="min-w-0 flex-1">' +
-          '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="d-4 display block leading-tight hover:text-muted transition-colors">' + esc(item.title) + '</a>' +
+          '<a href="' + workHref(item.slug) + '" class="d-4 display block leading-tight hover:text-muted transition-colors">' + esc(item.title) + '</a>' +
           '<p class="text-xs text-muted mt-1">' + esc(item.artist) + (item.edition ? ' · ' + esc(item.edition) : '') + '</p>' +
           '<div class="flex items-center justify-between gap-3 mt-3">' +
             '<div class="flex items-center gap-2">' +
@@ -211,11 +221,11 @@
       var max = item.unique ? 1 : window.Cart.MAX_EDITION;
       return '' +
         '<article class="grid grid-cols-[88px_1fr] sm:grid-cols-[130px_1fr_auto] gap-5 sm:gap-8 items-start py-8 rule-b" data-row="' + item.slug + '">' +
-          '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="media" style="aspect-ratio:3/4">' +
+          '<a href="' + workHref(item.slug) + '" class="media" style="aspect-ratio:3/4">' +
             '<img src="assets/img/' + item.img + '" alt="" class="is-loaded" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' +
           '</a>' +
           '<div>' +
-            '<a href="artwork.php?slug=' + encodeURIComponent(item.slug) + '" class="display d-3 hover:text-muted transition-colors">' + esc(item.title) + '</a>' +
+            '<a href="' + workHref(item.slug) + '" class="display d-3 hover:text-muted transition-colors">' + esc(item.title) + '</a>' +
             '<p class="text-sm text-muted mt-2">' + esc(item.artist) + '</p>' +
             '<p class="text-xs text-muted mt-1">' + esc(item.edition || 'Unique work') + '</p>' +
             '<div class="flex items-center gap-3 mt-5">' +
@@ -637,6 +647,15 @@
     var submit = qs('[data-step-submit]', form);
     var success = qs('[data-booking-success]', form.parentNode);
     var step = 0;
+
+    // Server-side this arrives already selected; on a static build every
+    // visitor gets the same file, so honour ?work= here as well.
+    var wanted = new URLSearchParams(window.location.search).get('work');
+    var workSelect = qs('select[name="visit_work"]', form);
+    if (wanted && workSelect) {
+      var match = qsa('option', workSelect).some(function (o) { return o.value === wanted; });
+      if (match) workSelect.value = wanted;
+    }
 
     // Same-day bookings are fine, but nothing in the past.
     var dateInput = qs('input[type="date"]', form);

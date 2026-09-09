@@ -6,7 +6,9 @@
   "scripts": {
     "css": "tailwindcss -i ./src/input.css -o ./assets/css/tailwind.css --minify",
     "css:watch": "tailwindcss -i ./src/input.css -o ./assets/css/tailwind.css --watch",
+    "build": "npm run css && node scripts/build-static.mjs",
     "serve": "php -S localhost:8000",
+    "serve:dist": "php -S localhost:8010 -t dist",
     "start": "npm run css && npm run serve"
   },
   "devDependencies": {
