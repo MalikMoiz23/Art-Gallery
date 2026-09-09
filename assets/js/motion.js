@@ -203,16 +203,27 @@
         io.unobserve(el);
         var to = parseFloat(el.getAttribute('data-count')) || 0;
         if (reduced) { el.textContent = String(to); return; }
-        var dur = 1500;
-        var t0 = performance.now();
-        (function tick(now) {
-          var t = clamp((now - t0) / dur, 0, 1);
-          var eased = 1 - Math.pow(1 - t, 4);
-          el.textContent = Math.round(to * eased).toLocaleString('en-US');
-          if (t < 1) requestAnimationFrame(tick);
-        })(t0);
+
+        // Hold until the surrounding block has faded in, otherwise the tally
+        // runs while the number is still transparent.
+        var host = el.closest('[data-reveal]');
+        var wait = host ? (parseFloat(getComputedStyle(host).transitionDelay) || 0) * 1000 + 200 : 0;
+
+        // Quadratic ease-out rather than quartic: a quartic curve is ~90% done
+        // inside the first 750ms, so the count was over before it could be read.
+        var dur = 2000;
+        el.textContent = '0';
+        setTimeout(function () {
+          var t0 = performance.now();
+          (function tick(now) {
+            var t = clamp((now - t0) / dur, 0, 1);
+            var eased = 1 - Math.pow(1 - t, 2);
+            el.textContent = Math.round(to * eased).toLocaleString('en-US');
+            if (t < 1) requestAnimationFrame(tick);
+          })(performance.now());
+        }, wait);
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.25 });
 
     els.forEach(function (el) { io.observe(el); });
   }

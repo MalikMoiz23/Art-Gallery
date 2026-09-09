@@ -6,6 +6,7 @@ $page_desc  = 'Nuqta represents eight Pakistani artists across painting, miniatu
 
 $featured  = featured_works(6);
 $hero_work = find_artwork('nightfall-ravi');
+$hero_side = array_filter([find_artwork('the-listener'), find_artwork('one-letter-standing')]);
 $cats      = categories();
 $range     = price_range();
 
@@ -44,22 +45,42 @@ include __DIR__ . '/includes/head.php';
 
         <div class="lg:col-span-5" data-reveal="up" data-reveal-delay="220">
           <?php if ($hero_work): $hm = media($hero_work['img']); ?>
-            <a href="artwork.php?slug=<?= e($hero_work['slug']) ?>" class="block max-w-[380px] mx-auto lg:ml-auto lg:mr-0">
-              <div class="frame">
-                <div class="frame-mat">
-                  <div class="media" style="aspect-ratio:<?= (int) $hm['w'] ?>/<?= (int) $hm['h'] ?>">
-                    <?= picture($hero_work['img'], $hero_work['title'] . ' by ' . artist_name($hero_work['artist']), '', true) ?>
+            <div class="flex flex-col-reverse lg:flex-row lg:items-end gap-3 sm:gap-4 max-w-[420px] mx-auto lg:max-w-[480px] lg:ml-auto lg:mr-0">
+
+              <!-- Two supporting works, a row beneath on phones and a column beside on desktop. -->
+              <div class="flex lg:flex-col gap-3 sm:gap-4 lg:w-[27%] shrink-0">
+                <?php foreach ($hero_side as $side): $sm = media($side['img']); ?>
+                  <a href="artwork.php?slug=<?= e($side['slug']) ?>"
+                     class="block flex-1 lg:flex-none min-w-0"
+                     aria-label="<?= e($side['title']) ?> by <?= e(artist_name($side['artist'])) ?>">
+                    <div class="frame frame-sm">
+                      <div class="frame-mat">
+                        <div class="media" style="aspect-ratio:<?= (int) $sm['w'] ?>/<?= (int) $sm['h'] ?>">
+                          <?= picture($side['img'], $side['title'] . ' by ' . artist_name($side['artist'])) ?>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <?php endforeach; ?>
+              </div>
+
+              <a href="artwork.php?slug=<?= e($hero_work['slug']) ?>" class="block flex-1 min-w-0">
+                <div class="frame">
+                  <div class="frame-mat">
+                    <div class="media" style="aspect-ratio:<?= (int) $hm['w'] ?>/<?= (int) $hm['h'] ?>">
+                      <?= picture($hero_work['img'], $hero_work['title'] . ' by ' . artist_name($hero_work['artist']), '', true) ?>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="flex items-baseline justify-between gap-4 mt-4">
-                <div>
-                  <p class="display d-4"><?= e($hero_work['title']) ?></p>
-                  <p class="label-xs text-muted mt-1.5"><?= e(artist_name($hero_work['artist'])) ?> · <?= (int) $hero_work['year'] ?></p>
+                <div class="flex items-baseline justify-between gap-4 mt-4">
+                  <div class="min-w-0">
+                    <p class="display d-4"><?= e($hero_work['title']) ?></p>
+                    <p class="label-xs text-muted mt-1.5"><?= e(artist_name($hero_work['artist'])) ?> · <?= (int) $hero_work['year'] ?></p>
+                  </div>
+                  <p class="num text-sm shrink-0"><?= e(money_short($hero_work['price'])) ?></p>
                 </div>
-                <p class="num text-sm"><?= e(money_short($hero_work['price'])) ?></p>
-              </div>
-            </a>
+              </a>
+            </div>
           <?php endif; ?>
         </div>
       </div>
