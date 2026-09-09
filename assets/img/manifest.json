@@ -1,0 +1,426 @@
+{
+  "art": [
+    {
+      "file": "art/art-01.jpg",
+      "w": 1100,
+      "h": 1576,
+      "ratio": 0.698,
+      "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAACciHjEiHjcpHzwqHx4gIyMlIykmIywlJi8oIS8sKTYyLTw3MEI6M2xkXHJpXgAAACH5BAAAAAAALAAAAAADAAUAAAQLEJglmEOpFaLGCREAOw==",
+      "hsl": [
+        95,
+        2,
+        32
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 410321
+    },
+    {
+      "file": "art/art-02.jpg",
+      "w": 1100,
+      "h": 1388,
+      "ratio": 0.7925,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAAkLCBAPCRAQCxMRChMRCxQRDBQSDBcTDRoXDxwYDxYWEB8bERwbEyEdEyQgFScjFjcqFjUsGjowHVM7HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURILM4jzJBDSJFiQAQhzEERQgAOw==",
+      "hsl": [
+        40,
+        37,
+        35
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 459716
+    },
+    {
+      "file": "art/art-03.jpg",
+      "w": 1100,
+      "h": 1266,
+      "ratio": 0.8689,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABUVEhUWExYVFhYXFxcXGBgXGBcYGRkbGhgbHhkdIB0hIx8iJiAkIyElJiAkKCEmKSUsMSgwNwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoEAUhZEgxBNBi/I0jHAAQAgAOw==",
+      "hsl": [
+        160,
+        5,
+        44
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 401952
+    },
+    {
+      "file": "art/art-04.jpg",
+      "w": 1100,
+      "h": 873,
+      "ratio": 1.26,
+      "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAF9bW2lgXH1nV3xqXGhjYnBlYHRrZnltZXxwZnZwa3pwaHp3bodxYYdyYYNwZoRzZ5Z4Zpt/aJ2Eb5iFd52FdKSHcaeVhaqTg6+ah62ajrWjjLykkcqznc27rgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYHZB0dZhj9BUHAIUwaAphHEky+QwEmWFADs=",
+      "hsl": [
+        354,
+        2,
+        52
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 415225
+    },
+    {
+      "file": "art/art-05.jpg",
+      "w": 1100,
+      "h": 1318,
+      "ratio": 0.8346,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACgiHiojHzAnHykkICslICslIS8mIC4nIS0oIjMqITQrITUqIjkvKDUwKj0yKT01LUM1J0U2KlJGOgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAEAAUAAAUQ4IAcQyM5ysMECRkIhxJBIQA7",
+      "hsl": [
+        252,
+        6,
+        44
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 315173
+    },
+    {
+      "file": "art/art-08.jpg",
+      "w": 1100,
+      "h": 1091,
+      "ratio": 1.0082,
+      "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAALqqlLyslb+slL+tlcGqk8y1mcu0nsu3ns23nMu5n8+7n9G7ndC4n9K6oNO9oNK9otW+pNi/pNfAotbApdfApdfBpdjCp9rDp9rDqQAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVoHVREVRJijAkyAEET9EwhLNMmBECADs=",
+      "hsl": [
+        229,
+        45,
+        40
+      ],
+      "type": "Drawing and Watercolor",
+      "medium": "Watercolor and graphite on tan wove paper",
+      "bytes": 298246
+    },
+    {
+      "file": "art/art-09.jpg",
+      "w": 1100,
+      "h": 875,
+      "ratio": 1.2571,
+      "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAADovDTgwD0c9F0g8F0E5HE1GH1JCH09GIU9EKFRFI1VGJFFJJlVJJVpIJGBRLmlYNnhkRXFkUnVnVHhqV39xXIduTIBuWIFwWYZxWYFzXoZ4Y4d4ZJGAbZ6NdwAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYoJZFW8dRk2RhF0I4jXE8AxAISQUpBbOEADs=",
+      "hsl": [
+        40,
+        17,
+        31
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 341000
+    },
+    {
+      "file": "art/art-10.jpg",
+      "w": 1100,
+      "h": 1351,
+      "ratio": 0.8142,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACwmHCwmHTQrHzMsHTQsHjUsHzUtHy0oIDYxIDkyITk0Iz80I0E3JkE2J0I6JUg5J0E2KEY6KUI6LEo+LQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIIAMBOMYwjNFSwBJSVMcSggAOw==",
+      "hsl": [
+        37,
+        32,
+        48
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 691862
+    },
+    {
+      "file": "art/art-11.jpg",
+      "w": 1100,
+      "h": 758,
+      "ratio": 1.4512,
+      "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAE1HPWtmWYB7b6qdgqmdirGjhquklKyml8+7ksa6ntfEntfFn9vCmN3FnNzFndzHns3DqtTBpN3Ho97IoN3Nq+LNp+PNqeLPrOXRsOTSsubWt+jVtOrXtO7at+DRuOPSuuvau/Hev/XjxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwM1loUA8LKIBICAodEKQg4GQ4IA0H0+EksFUGhOGQxIEADs=",
+      "hsl": [
+        46,
+        65,
+        47
+      ],
+      "type": "Painting",
+      "medium": "Opaque watercolor with gold on paper",
+      "bytes": 421345
+    },
+    {
+      "file": "art/art-12.jpg",
+      "w": 1100,
+      "h": 1680,
+      "ratio": 0.6548,
+      "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAHx2Vo6EX5SHWo2GYZCJZp6Ta5qSbZ6VbqGYcLath7iuhryzjL21j8C1i8G3jgAAACH5BAAAAAAALAAAAAADAAUAAAQLsC1VREDjGEAcSxEAOw==",
+      "hsl": [
+        48,
+        56,
+        42
+      ],
+      "type": "Painting",
+      "medium": "Opaque watercolor and gold on paper",
+      "bytes": 778492
+    },
+    {
+      "file": "art/art-13.jpg",
+      "w": 1100,
+      "h": 1474,
+      "ratio": 0.7463,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAFZWT3pzTHlmWnByU3d+XF1naF1qbIN4W4F/WpuNe5+Pe5yXf6KXd6yaeaucfqCXgK6khruql7yul9LFsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoFAYQIAQwzJBTOQ0UnI8SggAOw==",
+      "hsl": [
+        44,
+        78,
+        48
+      ],
+      "type": "Painting",
+      "medium": "Opaque watercolor and gold on paper",
+      "bytes": 959402
+    },
+    {
+      "file": "art/art-14.jpg",
+      "w": 1100,
+      "h": 1571,
+      "ratio": 0.7002,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAJmCarCFaaaMcqGOe62NebCLcLCPcbmdepuQhqSbj7Ohia6mmrakkcOohsKoh8CpjMWuj8qxjsu2l9W3kQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoPRAU9Q4CoMkCzEUwWEAQggAOw==",
+      "hsl": [
+        210,
+        55,
+        36
+      ],
+      "type": "Painting",
+      "medium": "Opaque watercolor and gold on paper",
+      "bytes": 992050
+    },
+    {
+      "file": "art/art-15.jpg",
+      "w": 1100,
+      "h": 1172,
+      "ratio": 0.9386,
+      "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAKykh62lh6qki66ojLWukbStkry2nr+5nsa9ncG6oMe+oMa/pNDEnsrBoMrBoszDo9DGpNPJqdHIq9LKrtfOrtfPr9PLsNnRtN3WvAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVIIMoC/UQgIE1QpBczlAcVWRJExQCADs=",
+      "hsl": [
+        45,
+        53,
+        40
+      ],
+      "type": "Book",
+      "medium": "Ink, colors, and gold on vellum",
+      "bytes": 338666
+    },
+    {
+      "file": "art/art-16.jpg",
+      "w": 1100,
+      "h": 857,
+      "ratio": 1.2835,
+      "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAG5dSW9eSnJiS3ViTnhsVoV2XIV4Y4d4ZIl5YYp6Yop7Y4h6Zo+BbZCAaZGCapOFbZOGbJSEbpmKcJmLdZqMdpqOd52PdJ6QdaCSeqGUeaKUe6GTfKOVfaSXfwAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4FVYlZE9QZMA03JoEMFQQ+QIEodgm9KFADs=",
+      "hsl": [
+        233,
+        98,
+        61
+      ],
+      "type": "Painting",
+      "medium": "Opaque watercolor and gold on paper",
+      "bytes": 511447
+    },
+    {
+      "file": "art/art-17.jpg",
+      "w": 1100,
+      "h": 811,
+      "ratio": 1.3564,
+      "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAHVzcXZ0cXV0cnd1coV/dYR/dp2GXp6KaYWAdYeAdIeBdYaBdoiCd4SAeYeCeIaCeYiDeY6HeY+Ie5CJfJCJfZCKfqySZKaSbKyWb66Yb7CXbLecbbulfrqmgL6pg7yohMGqgcewhsu3kQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwIGEMqlEAo8Qp/MRORoZw+XggRQ2Fg0GtBAkFAQGAhAEADs=",
+      "hsl": [
+        15,
+        89,
+        35
+      ],
+      "type": "Painting",
+      "medium": "Ink and color on vellum",
+      "bytes": 298705
+    },
+    {
+      "file": "art/art-18.jpg",
+      "w": 1100,
+      "h": 459,
+      "ratio": 2.3965,
+      "lqip": "data:image/gif;base64,R0lGODlhDAAFAPUAAC0jHC0kHTElHjEmHjYqIjYqIzguJjovJjouJ0I2LUI1N0Y5MUw8Mkc8PEY8PUk6O0s7Okw7PEs8PEo8PUg+Pks+Pk89P00/Pk0+P00/P09AP1BAN1lDNlREOFZHOlZHO1tHOFdIO1lIPFlKPl5LPmVLPGJMPmRNP2dNP2dOP2hOP0k/QU4/QU8/QUxBQ09AQlJFR1NGR2NPQWpPQWVRRGVSRWZSRGxSQ2pSRGxSRAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAMAAUAAAY3wMYFgsFYWqzIY6IIeEiCDa2wqB0MIQ5OVbrNULnUyQQaJRA2BkHWGYg+AMfKJdHEWC9YpkIJAgA7",
+      "hsl": [
+        7,
+        61,
+        60
+      ],
+      "type": "Textile",
+      "medium": "Cotton, plain weave; engraved roller printed; glazed",
+      "bytes": 451751
+    },
+    {
+      "file": "art/art-19.jpg",
+      "w": 1100,
+      "h": 819,
+      "ratio": 1.3431,
+      "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAFZRQW9qUnlwWXp3YYt/YYiFbJeObpONcZ2be6OTc7alerqqf5uegZmchqaZiYegjZeiipamj46lkamkh6Onj6+tmLGsmMCwh8Wtms7HrtHKsNPMtNTNtNjRt9zQtdvRuN/Zv+HaweXexAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwAxHExKBMJ5PZ2OpOBIEASAwKDAQB8NloZA8IpAGZRIEADs=",
+      "hsl": [
+        355,
+        66,
+        62
+      ],
+      "type": "Print",
+      "medium": "Color woodblock print; chuban",
+      "bytes": 382717
+    },
+    {
+      "file": "art/art-20.jpg",
+      "w": 1100,
+      "h": 821,
+      "ratio": 1.3398,
+      "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAIF6ZYN9aYKHeZWOdaGcf4afjY6Zio+Yi5CbiZSbipailpmqlaqhgaSqhqehiqiwj724h6qmkb+omLu3n5+vocC5n8O9ocfBpdHKtNPLttTMttnMtt3Wwt/awN3Yw+DbwOXeyeXgxeTgyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQE0GwwF5JJ9QRxSZbCoBy2UAcCQEBwXFgCgsGIQHpBEEADs=",
+      "hsl": [
+        354,
+        66,
+        62
+      ],
+      "type": "Print",
+      "medium": "Color woodblock print; chuban",
+      "bytes": 336138
+    },
+    {
+      "file": "art/art-21.jpg",
+      "w": 1100,
+      "h": 2393,
+      "ratio": 0.4597,
+      "lqip": "data:image/gif;base64,R0lGODlhAgAFAPMAAF5ZTmVeUXJuX3x2ZXt4a4KAb4SAcZmRe6GagqSgiQAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAACAAUAAAQIEIQhEirHkAgAOw==",
+      "hsl": [
+        43,
+        16,
+        58
+      ],
+      "type": "Print",
+      "medium": "Color woodblock print; vertical nagaban",
+      "bytes": 1168509
+    },
+    {
+      "file": "art/art-22.jpg",
+      "w": 1100,
+      "h": 1389,
+      "ratio": 0.7919,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADY2Njc3Nzw8PEVFRUZGRkpKSlBQUFdXV11dXWFhYWtra29vb3Jyco6Ojo+Pj5WVlZaWlpmZmbS0tMHBwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAEAAUAAAURoMAgACElQfFEgwFNh9I4SwgAOw==",
+      "hsl": [
+        0,
+        0,
+        49
+      ],
+      "type": "Sculpture",
+      "medium": "Marble",
+      "bytes": 225748
+    },
+    {
+      "file": "art/art-26.jpg",
+      "w": 1100,
+      "h": 677,
+      "ratio": 1.6248,
+      "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAHc1GHUzHHc0Hno7HXw5HXs8HXo+H3o/H3s3JHw7IH49IXo4JH85JYM8KIM+K4U+LINEJYRHJYhSN4hQOYhROYxVO41WPJBXN5BYOpJZO5RcO5NcPZNdPpFcQptpS51rTJ9sTKNyUqd1Vap4WKl9Yat9ZK6AX7WMaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQJKkMqFYOqVPYHEwIASeEcMRgTwaohAgMSgoCKAThrPJaC6mIAA7",
+      "hsl": [
+        353,
+        54,
+        30
+      ],
+      "type": "Textile",
+      "medium": "Silk, plain weave with plain interlacings of secondary binding warps and supplementary patterning wefts",
+      "bytes": 448477
+    },
+    {
+      "file": "art/art-27.jpg",
+      "w": 1100,
+      "h": 2040,
+      "ratio": 0.5392,
+      "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAH1GJIJMJ4ZSLJZdPpBmQ5RlRZlnR5ZtR5ZuSZxqSp1uTaN1Vql4WaSAXaSBXQAAACH5BAAAAAAALAAAAAADAAUAAAQLkI1lQElCoXAcaREAOw==",
+      "hsl": [
+        0,
+        61,
+        36
+      ],
+      "type": "Religious/Ritual Object",
+      "medium": "Silk and gilt-animal-substrate-wrapped linen, warp-float faced 4:1 satin weave with twill interlacings of secondary binding warps and supplementary patterning wefts",
+      "bytes": 1339233
+    },
+    {
+      "file": "art/art-28.jpg",
+      "w": 1100,
+      "h": 1230,
+      "ratio": 0.8943,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAI9IOZFJO5dNPJlPP5hUQJlVQqBoVqNpWLBzZbB0ZbR6Z7N8aK6Ba7SHbrmHcbiGc7qWf8aYhsebicafiQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoIQk0SIMSkMUDgMED2QcUwgAOw==",
+      "hsl": [
+        357,
+        35,
+        43
+      ],
+      "type": "Textile",
+      "medium": "Silk and linen, plain weave with supplementary patterning wefts bound by secondary binding warps in plain interlacings",
+      "bytes": 912550
+    },
+    {
+      "file": "art/art-30.jpg",
+      "w": 1100,
+      "h": 1100,
+      "ratio": 1,
+      "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAHQ6H4NOM5BZPYJfUppkSYtlWZJlUKJoSqdrTKhxU7R8X4VwbZh9dZF8eaR/cpuCe7SEa6OHgqiQi6eTka+al6ypsrWwure1vbmxvMG6w8C8w8LAysXDy8rEy8jDzsvHz8vJ0szK087N1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQE0nUpB8MqIHQBCghDgGBCThAG0YBwVh4rlUFoOGBRMEADs=",
+      "hsl": [
+        280,
+        5,
+        72
+      ],
+      "type": "Ceramics",
+      "medium": "Ceramic and pigment",
+      "bytes": 388343
+    },
+    {
+      "file": "art/art-33.jpg",
+      "w": 1100,
+      "h": 1650,
+      "ratio": 0.6667,
+      "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAHdyb3tya3h0cnx6eH59fIRZPYldQZNiRoR7dIZ8dYaBfouDfp+WkLGxsLKysQAAACH5BAAAAAAALAAAAAADAAUAAAQLkKQBTBAHqbIcaxEAOw==",
+      "hsl": [
+        160,
+        0,
+        47
+      ],
+      "type": "Ceramics",
+      "medium": "Ceramic and pigment",
+      "bytes": 446408
+    }
+  ],
+  "hero": [
+    {
+      "file": "hero/hero-02.jpg",
+      "w": 1686,
+      "h": 1152,
+      "ratio": 1.4635,
+      "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAADwzF0E1EkEyHEQ8Hkk9Gkk9HUY+IUU/JU5BHVFDH1xGHU5CIU5DJE1CJk1HLVNHJVpMJ1tNKEZDMlBNN2NVJ2JULWVbNGZZOXhnNnlnNn1rPHZrQ3xvQ3puSX1xSYd5Rol5Rbquer2zkgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAHAAUAAAYhQMYiUoEkHgNAAUEIWA6GjshD2UwcnNBHc5EwMqCMQhAEADs=",
+      "hsl": [
+        47,
+        53,
+        56
+      ],
+      "type": "Miniature room",
+      "medium": "Miniature room, mixed media",
+      "bytes": 660751
+    },
+    {
+      "file": "hero/hero-03.jpg",
+      "w": 1686,
+      "h": 1957,
+      "ratio": 0.8615,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABoTDS0dECweEDAjFU03JlxCI15FJmlPLmpQKmVRNG1VM2tWOXdaNXhdOHtdQHZiRoFlPoFkP4dqRoxwTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoGIUSBIAxyMM00I4UsNEUAgAOw==",
+      "hsl": [
+        38,
+        38,
+        48
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 1459357
+    },
+    {
+      "file": "hero/hero-04.jpg",
+      "w": 1686,
+      "h": 2168,
+      "ratio": 0.7777,
+      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAE48ME0+M1tNQVpSR1FXU2NPQWBSRWpRQGRWTGtbS3RbSXRdTGNbUG9fUXdhT21qX3VhUX5xXYpzWZN5WwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYDRJj7NAjWAUyJAcCsEEQAgAOw==",
+      "hsl": [
+        48,
+        6,
+        40
+      ],
+      "type": "Painting",
+      "medium": "Oil on canvas",
+      "bytes": 1114094
+    }
+  ]
+}
