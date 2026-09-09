@@ -1,7 +1,7 @@
 # Nuqta — contemporary art gallery
 
 Front-end for a fictional contemporary art gallery in Islamabad. Eight represented
-artists, 26 works, across painting, contemporary miniature, calligraphy, woodblock
+artists, 25 works, across painting, contemporary miniature, calligraphy, woodblock
 print, textile and sculpture.
 
 This is **front-end only**. There is no database, no admin, no payment processing and
@@ -19,6 +19,24 @@ the visitor to send themselves, so they keep a copy of what they asked for.
 
 No runtime dependencies are fetched from the network. Node is needed only to rebuild
 the CSS.
+
+## Palette
+
+Seven neutrals, no accent colour. Interface weight comes from type and space, not hue.
+
+| Token | Hex | Used for |
+| --- | --- | --- |
+| `paper` | `#FFFFFF` | cards, panels, the mat behind every work |
+| `mist` | `#DFE0DB` | default section background |
+| `sand` | `#C2BCB4` | hero and accent bands |
+| `ink` | `#171917` | body copy and headings |
+| `char` | `#282A25` | filled buttons, footer, closing panel |
+| `muted` | `#666662` | meta, captions, secondary copy |
+| `line` | `#898884` | hairlines and borders |
+
+Defined once in `src/input.css` under `@theme`, which generates `bg-mist`, `text-muted`,
+`border-line` and so on. `assets/css/app.css` mirrors them as CSS variables for the
+hand-written components.
 
 ## Running it
 
@@ -46,7 +64,7 @@ data/
   artists.php           represented artists
   site.php              exhibitions, services, FAQ, booking options
 includes/
-  head.php              <head>, preloader, grain, scroll rail
+  head.php              <head>, scroll-progress rail, skip link
   header.php            fixed header + full-screen mobile menu
   footer.php            footer, then the drawer/WhatsApp partials and scripts
   cart-drawer.php       slide-in enquiry list
@@ -59,7 +77,7 @@ src/input.css           Tailwind entry: @theme tokens, keyframes, custom utiliti
 assets/
   css/app.css           hand-written layer: motion, framed artwork, chrome
   css/tailwind.css      built output (committed)
-  js/motion.js          scroll engine — reveal, parallax, split text, pinned track
+  js/motion.js          scroll engine — reveal, parallax, split text, velocity skew
   js/cart.js            enquiry list state (localStorage)
   js/app.js             interface wiring — chrome, drawer, filters, booking flow
   img/manifest.json     intrinsic size + LQIP blur seed per image
@@ -96,8 +114,9 @@ is painted as a CSS background underneath, and the image fades in over it.
 
 **Motion.** Native scrolling is kept deliberately — no transform-based smooth-scroll
 wrapper — so `position: sticky`, anchor links, find-in-page and the mobile address bar
-all behave. One `requestAnimationFrame` loop drives parallax, the pinned horizontal
-track and the scroll-velocity skew; reveals use `IntersectionObserver`.
+all behave. One `requestAnimationFrame` loop drives parallax and the scroll-velocity
+skew; reveals use `IntersectionObserver`. There is no loading screen and no page-
+transition wipe: pages simply appear.
 
 Reveals never clip the observed element. A fully clipped element has an empty
 intersection rectangle, so it would never fire its own observer — the `clip` and `wipe`
@@ -111,12 +130,13 @@ visitor presses the WhatsApp button.
 declared before `utilities`. Left unlayered it would outrank every utility, and
 `hidden sm:grid` on a `.icon-btn` could never hide it.
 
-**Reduced motion.** `prefers-reduced-motion: reduce` drops the preloader, the custom
-cursor and the film grain, and reveals all content immediately. The site is fully usable
-with JavaScript disabled — a `<noscript>` block neutralises every hidden-by-default state.
+**Reduced motion.** `prefers-reduced-motion: reduce` reveals all content immediately and
+stills every transition. The site is fully usable with JavaScript disabled — a
+`<noscript>` block neutralises every hidden-by-default state.
 
-**Responsive.** The pinned horizontal gallery section degrades to a snap-scrolling rail
-below 1024px using the same markup.
+**Responsive.** Verified at 320, 375, 414, 600, 768, 834, 1024, 1280, 1440 and 1920px:
+no horizontal overflow, and the gallery filter row scrolls sideways only on narrow
+screens, wrapping once there is room for it.
 
 ## Image credits
 

@@ -1,7 +1,7 @@
 <?php
 /**
- * Represented artists. `accent` drives the monogram panel and detail-page
- * theming; `initials` is rendered as the card's typographic mark.
+ * Represented artists. `initials` is rendered as the card's typographic mark;
+ * the gallery publishes no artist portraits.
  */
 
 declare(strict_types=1);
@@ -14,7 +14,6 @@ const ARTISTS = [
         'city'       => 'Lahore',
         'born'       => 1979,
         'discipline' => 'Figurative painting',
-        'accent'     => '#8C4A2F',
         'represented'=> 2013,
         'statement'  => 'I paint the pause before someone speaks — the room holding its breath.',
         'bio'        => [
@@ -35,7 +34,6 @@ const ARTISTS = [
         'city'       => 'Lahore',
         'born'       => 1972,
         'discipline' => 'Landscape painting',
-        'accent'     => '#2F5B57',
         'represented'=> 2011,
         'statement'  => 'A landscape is a portrait of weather. I am only ever painting air.',
         'bio'        => [
@@ -56,7 +54,6 @@ const ARTISTS = [
         'city'       => 'Karachi',
         'born'       => 1986,
         'discipline' => 'Colour and light',
-        'accent'     => '#A87B2E',
         'represented'=> 2017,
         'statement'  => 'Colour is a temperature before it is a hue. I work until the canvas feels warm.',
         'bio'        => [
@@ -77,7 +74,6 @@ const ARTISTS = [
         'city'       => 'Islamabad',
         'born'       => 1991,
         'discipline' => 'Contemporary miniature',
-        'accent'     => '#3E4C6B',
         'represented'=> 2019,
         'statement'  => 'The miniature was never small. It was dense. I am keeping the density.',
         'bio'        => [
@@ -98,7 +94,6 @@ const ARTISTS = [
         'city'       => 'Peshawar',
         'born'       => 1968,
         'discipline' => 'Calligraphy and illumination',
-        'accent'     => '#6B4A5C',
         'represented'=> 2014,
         'statement'  => 'A letter is a building. You can walk around it. Most people only read the front door.',
         'bio'        => [
@@ -119,7 +114,6 @@ const ARTISTS = [
         'city'       => 'Sialkot',
         'born'       => 1984,
         'discipline' => 'Woodblock and relief print',
-        'accent'     => '#2F4C6B',
         'represented'=> 2016,
         'statement'  => 'Carving is subtraction. By the time the block is right, the image has been decided for me.',
         'bio'        => [
@@ -140,7 +134,6 @@ const ARTISTS = [
         'city'       => 'Multan',
         'born'       => 1976,
         'discipline' => 'Textile and fibre',
-        'accent'     => '#8C2F3D',
         'represented'=> 2015,
         'statement'  => 'Cloth remembers every hand that touched it. I am adding mine to a very long list.',
         'bio'        => [
@@ -161,7 +154,6 @@ const ARTISTS = [
         'city'       => 'Quetta',
         'born'       => 1981,
         'discipline' => 'Sculpture and ceramics',
-        'accent'     => '#5B6B4A',
         'represented'=> 2018,
         'statement'  => 'Stone gives you one chance. Clay gives you a hundred. I need both to stay honest.',
         'bio'        => [

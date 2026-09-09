@@ -28,7 +28,7 @@ include __DIR__ . '/includes/head.php';
 
 <main id="main">
   <section class="shell min-h-[72svh] flex flex-col justify-center" style="padding-top:calc(var(--header-h) + 4rem)">
-    <p class="label-xs text-brass-600 mb-6 num" data-reveal="right">Error 404</p>
+    <p class="label-xs text-muted mb-6 num" data-reveal="right">Error 404</p>
     <h1 class="display d-hero max-w-[18ch]" data-split="lines" data-reveal="fade"><?= e($heading) ?></h1>
     <p class="lede mt-8 max-w-[46ch]" data-reveal="up" data-reveal-delay="220"><?= e($blurb) ?></p>
 
@@ -40,7 +40,7 @@ include __DIR__ . '/includes/head.php';
   </section>
 
   <section class="shell py-20 sm:py-28">
-    <p class="label-xs text-paper-500 mb-10" data-reveal="right">While you are here</p>
+    <p class="label-xs text-muted mb-10" data-reveal="right">While you are here</p>
     <div class="grid sm:grid-cols-3 gap-8 sm:gap-10" data-reveal-group="90">
       <?php foreach ($suggest as $i => $work): ?>
         <div data-reveal="up">

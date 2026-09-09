@@ -22,7 +22,6 @@
   var smoothVel = 0;
 
   var parallax = [];
-  var pins = [];
   var skews = [];
   var running = false;
 
@@ -158,25 +157,6 @@
       });
     });
 
-    pins = [];
-    // The pinned horizontal track is a desktop affordance; narrow screens get
-    // the same markup as an ordinary snap-scrolling rail (see app.css).
-    if (vw < 1024) {
-      document.querySelectorAll('[data-pin]').forEach(function (host) {
-        host.style.height = '';
-        var t = host.querySelector('.pin-track');
-        if (t) t.style.removeProperty('--x');
-      });
-    } else document.querySelectorAll('[data-pin]').forEach(function (host) {
-      var track = host.querySelector('.pin-track');
-      if (!track) return;
-      var distance = Math.max(0, track.scrollWidth - vw + parseFloat(getComputedStyle(host).getPropertyValue('--pin-tail') || 0));
-      // Scroll length = one viewport to hold the pin + the horizontal travel.
-      host.style.height = (vh + distance) + 'px';
-      var rect = host.getBoundingClientRect();
-      pins.push({ host: host, track: track, top: rect.top + window.scrollY, distance: distance, x: 0 });
-    });
-
     skews = Array.prototype.slice.call(document.querySelectorAll('.vel-skew'));
   }
 
@@ -197,15 +177,6 @@
       p.y = lerp(p.y, target, 0.14);
       if (Math.abs(p.y) < 0.02) p.y = 0;
       p.el.style.transform = 'translate3d(0,' + p.y.toFixed(2) + 'px,0)';
-    }
-
-    // Pinned horizontal tracks.
-    for (var k = 0; k < pins.length; k++) {
-      var pin = pins[k];
-      var travelled = clamp((scrollY - pin.top) / (pin.host.offsetHeight - vh || 1), 0, 1);
-      var tx = -travelled * pin.distance;
-      pin.x = lerp(pin.x, tx, 0.16);
-      pin.track.style.setProperty('--x', pin.x.toFixed(2) + 'px');
     }
 
     // Velocity skew — capped hard so text never becomes unreadable.
@@ -255,59 +226,6 @@
       } else {
         img.addEventListener('load', function () { img.classList.add('is-loaded'); }, { once: true });
         img.addEventListener('error', function () { img.classList.add('is-loaded'); }, { once: true });
-      }
-    });
-  }
-
-  /* ------------------------------------------------------------ cursor */
-
-  function initCursor() {
-    if (!fine || reduced) return;
-
-    var dot = document.createElement('div');
-    dot.className = 'cursor-dot';
-    var ring = document.createElement('div');
-    ring.className = 'cursor-ring';
-    var label = document.createElement('span');
-    ring.appendChild(label);
-    document.body.append(dot, ring);
-
-    var mx = vw / 2, my = vh / 2;
-    var rx = mx, ry = my;
-
-    window.addEventListener('pointermove', function (e) {
-      mx = e.clientX;
-      my = e.clientY;
-      dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
-    }, { passive: true });
-
-    (function follow() {
-      rx = lerp(rx, mx, 0.16);
-      ry = lerp(ry, my, 0.16);
-      ring.style.transform = 'translate3d(' + rx.toFixed(2) + 'px,' + ry.toFixed(2) + 'px,0)';
-      requestAnimationFrame(follow);
-    })();
-
-    document.addEventListener('pointerover', function (e) {
-      var host = e.target.closest('[data-cursor]');
-      if (host) {
-        var text = host.getAttribute('data-cursor');
-        if (text === 'tight') {
-          ring.classList.add('is-tight');
-        } else if (text) {
-          label.textContent = text;
-          ring.classList.add('is-label');
-        }
-        return;
-      }
-      if (e.target.closest('a, button, input, select, textarea, [role="button"]')) {
-        ring.classList.add('is-tight');
-      }
-    });
-
-    document.addEventListener('pointerout', function (e) {
-      if (e.target.closest('[data-cursor]') || e.target.closest('a, button, input, select, textarea, [role="button"]')) {
-        ring.classList.remove('is-label', 'is-tight');
       }
     });
   }
@@ -412,7 +330,6 @@
     initCounters();
     initMarquee();
     initRails();
-    initCursor();
     initPointerFx();
 
     measure();

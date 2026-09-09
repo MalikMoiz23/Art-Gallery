@@ -406,21 +406,6 @@
       "type": "Painting",
       "medium": "Oil on canvas",
       "bytes": 1459357
-    },
-    {
-      "file": "hero/hero-04.jpg",
-      "w": 1686,
-      "h": 2168,
-      "ratio": 0.7777,
-      "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAE48ME0+M1tNQVpSR1FXU2NPQWBSRWpRQGRWTGtbS3RbSXRdTGNbUG9fUXdhT21qX3VhUX5xXYpzWZN5WwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYDRJj7NAjWAUyJAcCsEEQAgAOw==",
-      "hsl": [
-        48,
-        6,
-        40
-      ],
-      "type": "Painting",
-      "medium": "Oil on canvas",
-      "bytes": 1114094
     }
   ]
 }

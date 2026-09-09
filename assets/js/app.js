@@ -43,75 +43,6 @@
 
   window.toast = toast;
 
-  /* ---------------------------------------------------------- preloader */
-
-  function initPreloader() {
-    var pre = qs('.preloader');
-    if (!pre) return;
-
-    // Only on the first page of a session; after that it would just be a tax.
-    var seen = false;
-    try { seen = sessionStorage.getItem('nuqta.seen') === '1'; } catch (e) { seen = false; }
-    if (seen || reduced) {
-      pre.remove();
-      document.body.classList.remove('is-locked');
-      return;
-    }
-
-    var bar = qs('.pre-bar > i', pre);
-    var readout = qs('[data-pre-count]', pre);
-    var eager = qsa('img[fetchpriority="high"], img[loading="eager"]');
-    var jobs = eager.length + 1;
-    var done = 0;
-    var shown = 0;
-
-    function bump() {
-      done++;
-      paint();
-    }
-
-    function paint() {
-      var target = Math.min(1, done / jobs);
-      shown += (target - shown) * 0.35;
-      var pct = Math.round(shown * 100);
-      if (bar) bar.style.setProperty('--p', shown.toFixed(3));
-      if (readout) readout.textContent = String(pct).padStart(2, '0');
-      if (pct < 100) requestAnimationFrame(paint);
-    }
-
-    eager.forEach(function (img) {
-      if (img.complete) bump();
-      else {
-        img.addEventListener('load', bump, { once: true });
-        img.addEventListener('error', bump, { once: true });
-      }
-    });
-
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(bump);
-    else bump();
-
-    paint();
-
-    function finish() {
-      done = jobs;
-      if (bar) bar.style.setProperty('--p', '1');
-      if (readout) readout.textContent = '100';
-      setTimeout(function () {
-        pre.classList.add('is-done');
-        document.body.classList.remove('is-locked');
-        try { sessionStorage.setItem('nuqta.seen', '1'); } catch (e) { /* ignore */ }
-        setTimeout(function () { pre.remove(); if (window.Motion) window.Motion.measure(); }, 1300);
-      }, 260);
-    }
-
-    // Never hold the page hostage to a slow asset.
-    var hardStop = setTimeout(finish, 2400);
-    window.addEventListener('load', function () {
-      clearTimeout(hardStop);
-      setTimeout(finish, 220);
-    });
-  }
-
   /* ------------------------------------------------- header + progress */
 
   function initChrome() {
@@ -170,35 +101,6 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && sheet.classList.contains('is-open')) setOpen(false);
     });
-  }
-
-  /* -------------------------------------------------- page transitions */
-
-  function initVeil() {
-    if (reduced) return;
-    var veil = qs('.page-veil');
-    if (!veil) return;
-
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest('a');
-      if (!a) return;
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-
-      var href = a.getAttribute('href') || '';
-      if (!href || href.charAt(0) === '#' || a.target === '_blank') return;
-      if (a.hasAttribute('download') || /^(mailto|tel|https?):/.test(href)) {
-        if (a.hostname && a.hostname !== window.location.hostname) return;
-        if (/^(mailto|tel):/.test(href)) return;
-      }
-      if (a.hasAttribute('data-no-veil')) return;
-
-      e.preventDefault();
-      veil.classList.add('is-on');
-      setTimeout(function () { window.location.href = href; }, 480);
-    });
-
-    // Coming back via the history cache should not leave the veil down.
-    window.addEventListener('pageshow', function () { veil.classList.remove('is-on'); });
   }
 
   /* ------------------------------------------------------ enquiry list */
@@ -904,10 +806,8 @@
   }
 
   function boot() {
-    initPreloader();
     initChrome();
     initMenu();
-    initVeil();
     initCart();
     initGallery();
     initLightbox();

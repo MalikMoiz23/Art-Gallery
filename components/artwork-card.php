@@ -26,7 +26,7 @@ $haystack = strtolower(implode(' ', [
          data-title="<?= e($work['title']) ?>"
          data-haystack="<?= e($haystack) ?>">
 
-  <a href="artwork.php?slug=<?= e($work['slug']) ?>" class="block" data-cursor="View work">
+  <a href="artwork.php?slug=<?= e($work['slug']) ?>" class="block">
     <div class="frame" data-tilt="3.5">
       <div class="tilt-inner">
         <div class="frame-mat">
@@ -40,17 +40,17 @@ $haystack = strtolower(implode(' ', [
 
   <div class="flex items-start justify-between gap-4 mt-5">
     <div class="min-w-0">
-      <a href="artwork.php?slug=<?= e($work['slug']) ?>" class="display d-4 block leading-tight group-hover:text-brass-500 transition-colors duration-500">
+      <a href="artwork.php?slug=<?= e($work['slug']) ?>" class="display d-4 block leading-tight group-hover:text-muted transition-colors duration-500">
         <?= e($work['title']) ?>
       </a>
-      <a href="artist.php?slug=<?= e($work['artist']) ?>" class="text-sm text-paper-400 hover:text-paper-100 transition-colors mt-1 inline-block">
+      <a href="artist.php?slug=<?= e($work['artist']) ?>" class="text-sm text-muted hover:text-ink transition-colors mt-1 inline-block">
         <?= e($artist_label) ?>
       </a>
-      <p class="label-xs text-paper-500 mt-2"><?= e($work['category']) ?> · <?= (int) $work['year'] ?></p>
+      <p class="label-xs text-muted mt-2"><?= e($work['category']) ?> · <?= (int) $work['year'] ?></p>
     </div>
 
     <div class="text-right shrink-0">
-      <p class="num text-sm <?= $sold ? 'text-paper-500 line-through' : 'text-brass-500' ?>"><?= e(money_short($work['price'])) ?></p>
+      <p class="num text-sm <?= $sold ? 'text-muted line-through' : 'text-ink' ?>"><?= e(money_short($work['price'])) ?></p>
       <span class="chip chip-<?= e($status['tone']) ?> mt-2"><span class="chip-dot"></span><?= e($status['label']) ?></span>
     </div>
   </div>
@@ -70,6 +70,6 @@ $haystack = strtolower(implode(' ', [
       <span data-add-label>Add to enquiry</span>
     </button>
   <?php else: ?>
-    <p class="label-xs text-paper-500 mt-4 py-2.5 text-center rule-t">In a private collection</p>
+    <p class="label-xs text-muted mt-4 py-2.5 text-center rule-t">In a private collection</p>
   <?php endif; ?>
 </article>

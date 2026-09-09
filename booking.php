@@ -13,8 +13,8 @@ include __DIR__ . '/includes/head.php';
 <main id="main">
 
   <section class="shell pb-14" style="padding-top:calc(var(--header-h) + 5rem)">
-    <p class="label-xs text-brass-600 flex items-center gap-3 mb-6" data-reveal="right">
-      <span class="num">03</span><span class="w-8 h-px bg-brass-600/50"></span>Visit
+    <p class="label-xs text-muted flex items-center gap-3 mb-6" data-reveal="right">
+      <span class="num">03</span><span class="w-8 h-px bg-line"></span>Visit
     </p>
 
     <div class="grid lg:grid-cols-12 gap-8 items-end">
@@ -32,18 +32,18 @@ include __DIR__ . '/includes/head.php';
       <!-- ------------------------------------------------------- form -->
       <div class="lg:col-span-7">
 
-        <form data-booking novalidate class="rule-t rule-b bg-ink-850 p-6 sm:p-9">
+        <form data-booking novalidate class="rule-t rule-b bg-paper p-6 sm:p-9">
 
           <div class="flex items-center gap-3 mb-8">
             <div class="flex items-center gap-2">
               <span class="step-dot is-on"></span><span class="step-dot"></span><span class="step-dot"></span>
             </div>
             <div class="flex items-center gap-4 label-xs">
-              <span data-step-label class="text-paper-50">What</span>
-              <span class="text-paper-500">/</span>
-              <span data-step-label class="text-paper-500">When</span>
-              <span class="text-paper-500">/</span>
-              <span data-step-label class="text-paper-500">Who</span>
+              <span data-step-label class="text-ink">What</span>
+              <span class="text-muted">/</span>
+              <span data-step-label class="text-muted">When</span>
+              <span class="text-muted">/</span>
+              <span data-step-label class="text-muted">Who</span>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ include __DIR__ . '/includes/head.php';
                          data-label="<?= e($type['label']) ?>" <?= $i === 0 ? 'checked' : '' ?> required>
                   <label for="type-<?= e($type['value']) ?>">
                     <span class="display d-4 block"><?= e($type['label']) ?></span>
-                    <span class="label-xs text-paper-500 mt-2 block leading-relaxed"><?= e($type['note']) ?></span>
+                    <span class="label-xs text-muted mt-2 block leading-relaxed"><?= e($type['note']) ?></span>
                   </label>
                 </div>
               <?php endforeach; ?>
@@ -101,9 +101,9 @@ include __DIR__ . '/includes/head.php';
               <span class="field-error"></span>
             </div>
 
-            <p class="label-xs text-paper-500 mt-3">Tuesday to Saturday, and Sunday afternoons. Mondays are by appointment only.</p>
+            <p class="label-xs text-muted mt-3">Tuesday to Saturday, and Sunday afternoons. Mondays are by appointment only.</p>
 
-            <p class="label-xs text-brass-600 mt-9 mb-4">Time</p>
+            <p class="label-xs text-muted mt-9 mb-4">Time</p>
             <div class="seg grid grid-cols-3 sm:grid-cols-4 gap-3" data-field>
               <?php foreach (TIME_SLOTS as $i => $slot): ?>
                 <div>
@@ -147,13 +147,13 @@ include __DIR__ . '/includes/head.php';
             </div>
 
             <div class="mt-9 pt-7 rule-t">
-              <p class="label-xs text-brass-600 mb-5">Your request</p>
+              <p class="label-xs text-muted mb-5">Your request</p>
               <dl class="grid sm:grid-cols-2 gap-x-8 gap-y-3.5">
-                <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-paper-500">Visit</dt><dd class="text-sm text-right" data-summary="type">—</dd></div>
-                <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-paper-500">Date</dt><dd class="text-sm text-right" data-summary="date">—</dd></div>
-                <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-paper-500">Time</dt><dd class="text-sm text-right num" data-summary="time">—</dd></div>
-                <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-paper-500">Guests</dt><dd class="text-sm text-right num" data-summary="people">—</dd></div>
-                <div class="flex justify-between gap-4 pb-2 rule-b sm:col-span-2"><dt class="label-xs text-paper-500">Work</dt><dd class="text-sm text-right" data-summary="work">—</dd></div>
+                <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-muted">Visit</dt><dd class="text-sm text-right" data-summary="type">—</dd></div>
+                <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-muted">Date</dt><dd class="text-sm text-right" data-summary="date">—</dd></div>
+                <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-muted">Time</dt><dd class="text-sm text-right num" data-summary="time">—</dd></div>
+                <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-muted">Guests</dt><dd class="text-sm text-right num" data-summary="people">—</dd></div>
+                <div class="flex justify-between gap-4 pb-2 rule-b sm:col-span-2"><dt class="label-xs text-muted">Work</dt><dd class="text-sm text-right" data-summary="work">—</dd></div>
               </dl>
             </div>
           </fieldset>
@@ -166,34 +166,34 @@ include __DIR__ . '/includes/head.php';
             </div>
           </div>
 
-          <p class="label-xs text-paper-500 mt-6 leading-relaxed">
+          <p class="label-xs text-muted mt-6 leading-relaxed">
             This form does not send anything on its own — it prepares a message you send on WhatsApp or by email,
             so you keep a copy of exactly what was asked for.
           </p>
         </form>
 
         <!-- success -->
-        <div data-booking-success hidden class="rule-t rule-b bg-ink-850 p-7 sm:p-10">
-          <span class="w-12 h-12 grid place-items-center rounded-full bg-brass-500 text-ink-900 mb-7" aria-hidden="true">
+        <div data-booking-success hidden class="rule-t rule-b bg-paper p-7 sm:p-10">
+          <span class="w-12 h-12 grid place-items-center rounded-full bg-char text-white mb-7" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 12.5 5 5L20 6.5"/></svg>
           </span>
           <h2 class="display d-2">Your request is ready</h2>
           <p class="prose-note mt-4 max-w-[46ch]">Send it on WhatsApp and we confirm the slot, usually within the hour during opening times.</p>
 
           <dl class="grid sm:grid-cols-2 gap-x-8 gap-y-3.5 mt-9">
-            <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-paper-500">Visit</dt><dd class="text-sm text-right" data-summary="type">—</dd></div>
-            <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-paper-500">Date</dt><dd class="text-sm text-right" data-summary="date">—</dd></div>
-            <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-paper-500">Time</dt><dd class="text-sm text-right num" data-summary="time">—</dd></div>
-            <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-paper-500">Guests</dt><dd class="text-sm text-right num" data-summary="people">—</dd></div>
-            <div class="flex justify-between gap-4 pb-2 rule-b sm:col-span-2"><dt class="label-xs text-paper-500">Work</dt><dd class="text-sm text-right" data-summary="work">—</dd></div>
+            <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-muted">Visit</dt><dd class="text-sm text-right" data-summary="type">—</dd></div>
+            <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-muted">Date</dt><dd class="text-sm text-right" data-summary="date">—</dd></div>
+            <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-muted">Time</dt><dd class="text-sm text-right num" data-summary="time">—</dd></div>
+            <div class="flex justify-between gap-4 pb-2 rule-b"><dt class="label-xs text-muted">Guests</dt><dd class="text-sm text-right num" data-summary="people">—</dd></div>
+            <div class="flex justify-between gap-4 pb-2 rule-b sm:col-span-2"><dt class="label-xs text-muted">Work</dt><dd class="text-sm text-right" data-summary="work">—</dd></div>
           </dl>
 
           <div class="grid sm:grid-cols-2 gap-3 mt-9">
-            <a class="btn" href="<?= e(wa_link()) ?>" target="_blank" rel="noopener" data-wa-booking data-no-veil><span>Send on WhatsApp</span></a>
-            <a class="btn btn-ghost" href="mailto:<?= e(EMAIL) ?>?subject=Viewing%20request" data-no-veil><span>Email instead</span></a>
+            <a class="btn" href="<?= e(wa_link()) ?>" target="_blank" rel="noopener" data-wa-booking><span>Send on WhatsApp</span></a>
+            <a class="btn btn-ghost" href="mailto:<?= e(EMAIL) ?>?subject=Viewing%20request"><span>Email instead</span></a>
           </div>
 
-          <a href="gallery.php" class="inline-block label-xs text-paper-500 hover:text-brass-500 transition-colors mt-8">Keep looking at the collection →</a>
+          <a href="gallery.php" class="inline-block label-xs text-muted hover:text-ink transition-colors mt-8">Keep looking at the collection →</a>
         </div>
       </div>
 
@@ -201,11 +201,11 @@ include __DIR__ . '/includes/head.php';
       <aside class="lg:col-span-5 grid gap-10 lg:sticky" style="top:calc(var(--header-h) + 1.5rem)">
 
         <div class="rule-t pt-7" data-reveal="up">
-          <p class="label-xs text-brass-600 mb-5">Where</p>
+          <p class="label-xs text-muted mb-5">Where</p>
           <address class="not-italic display d-3 leading-snug"><?= e(ADDRESS_LINE_1) ?><br><?= e(ADDRESS_LINE_2) ?></address>
           <div class="flex flex-wrap gap-3 mt-6">
-            <a href="<?= e(map_link()) ?>" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" data-no-veil><span>Open in Maps</span></a>
-            <a href="tel:<?= e(str_replace(' ', '', PHONE_DISPLAY)) ?>" class="btn btn-ghost btn-sm num" data-no-veil><span><?= e(PHONE_DISPLAY) ?></span></a>
+            <a href="<?= e(map_link()) ?>" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><span>Open in Maps</span></a>
+            <a href="tel:<?= e(str_replace(' ', '', PHONE_DISPLAY)) ?>" class="btn btn-ghost btn-sm num"><span><?= e(PHONE_DISPLAY) ?></span></a>
           </div>
           <p class="prose-note text-sm mt-6">
             Parking is on the service road behind the block. The gallery is on the first floor; there is a lift,
@@ -214,19 +214,19 @@ include __DIR__ . '/includes/head.php';
         </div>
 
         <div class="rule-t pt-7" data-reveal="up">
-          <p class="label-xs text-brass-600 mb-5">Opening hours</p>
+          <p class="label-xs text-muted mb-5">Opening hours</p>
           <ul class="grid gap-2.5">
             <?php foreach (OPENING_HOURS as $days => $hours): ?>
               <li class="flex justify-between gap-4 pb-2.5 rule-b">
-                <span class="text-sm text-paper-300"><?= e($days) ?></span>
-                <span class="text-sm num text-paper-400"><?= e($hours) ?></span>
+                <span class="text-sm text-muted"><?= e($days) ?></span>
+                <span class="text-sm num text-muted"><?= e($hours) ?></span>
               </li>
             <?php endforeach; ?>
           </ul>
         </div>
 
         <div class="rule-t pt-7" data-reveal="up">
-          <p class="label-xs text-brass-600 mb-5">What a private viewing is</p>
+          <p class="label-xs text-muted mb-5">What a private viewing is</p>
           <ol class="grid gap-4">
             <?php foreach ([
                 'The gallery is closed to everyone else for your slot.',
@@ -236,7 +236,7 @@ include __DIR__ . '/includes/head.php';
                 'There is no expectation that you buy anything at the end of it.',
             ] as $i => $line): ?>
               <li class="flex gap-4">
-                <span class="label-xs text-brass-500 num shrink-0 pt-0.5"><?= str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) ?></span>
+                <span class="label-xs text-ink num shrink-0 pt-0.5"><?= str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) ?></span>
                 <span class="text-sm prose-note"><?= e($line) ?></span>
               </li>
             <?php endforeach; ?>
@@ -244,10 +244,10 @@ include __DIR__ . '/includes/head.php';
         </div>
 
         <div class="rule-t pt-7" data-reveal="up">
-          <p class="label-xs text-brass-600 mb-4">Rather just message?</p>
+          <p class="label-xs text-muted mb-4">Rather just message?</p>
           <p class="prose-note text-sm">Skip the form entirely. Tell us roughly when you want to come and we will fit you in.</p>
           <a href="<?= e(wa_link('Hello Nuqta, I would like to arrange a viewing. Here is when I am free: ')) ?>"
-             target="_blank" rel="noopener" class="btn btn-ghost w-full mt-5" data-no-veil><span>WhatsApp the front desk</span></a>
+             target="_blank" rel="noopener" class="btn btn-ghost w-full mt-5"><span>WhatsApp the front desk</span></a>
         </div>
       </aside>
     </div>

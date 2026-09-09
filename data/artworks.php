@@ -75,16 +75,6 @@ const ARTWORKS = [
 
     /* ------------------------------------------------- Sana Farooqi */
     [
-        'slug' => 'ascension-study', 'title' => 'Ascension Study',
-        'artist' => 'sana-farooqi', 'year' => 2025, 'category' => 'Painting',
-        'medium' => 'Oil and cold wax on linen', 'dimensions' => '168 × 130 cm',
-        'price' => 2850000, 'status' => 'available', 'edition' => 'Unique',
-        'framed' => false, 'signature' => 'Signed and dated verso',
-        'img' => 'hero/hero-04.jpg', 'featured' => true,
-        'tags' => ['abstract', 'figure', 'cloud', 'large'],
-        'story' => 'The largest canvas Farooqi has completed, and the closest her work has come back to the Bologna frescoes she spent two years cleaning. Nine layers, five of them scraped back almost entirely.',
-    ],
-    [
         'slug' => 'warm-ground-ii', 'title' => 'Warm Ground II',
         'artist' => 'sana-farooqi', 'year' => 2025, 'category' => 'Painting',
         'medium' => 'Acrylic and raw pigment on canvas', 'dimensions' => '96 × 122 cm',
