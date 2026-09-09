@@ -701,7 +701,11 @@
     qsa('.field input, .field select, .field textarea').forEach(function (input) {
       var sync = function () {
         var wrap = fieldOf(input);
-        if (wrap) wrap.classList.toggle('is-filled', !!(input.value || '').trim());
+        if (!wrap) return;
+        // A select is never empty-looking - it always shows an option - so its
+        // label must stay floated regardless of value.
+        var filled = input.tagName === 'SELECT' || !!(input.value || '').trim();
+        wrap.classList.toggle('is-filled', filled);
       };
       sync();
       input.addEventListener('input', function () { sync(); clearError(input); });

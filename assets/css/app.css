@@ -942,6 +942,13 @@ body.is-locked {
   transform: translateY(-1.15rem) scale(0.74);
   color: var(--brass);
 }
+/* A select always renders its current option, so its label can never sit at
+   rest without colliding with that text. Keep it floated permanently.
+   initFieldBehaviour() also flags selects as filled, for browsers without :has(). */
+.field:has(select) label {
+  transform: translateY(-1.15rem) scale(0.74);
+}
+
 .field input:focus,
 .field select:focus,
 .field textarea:focus { border-color: var(--brass); outline: none; }
